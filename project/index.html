@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Moonshot: Lexitron Launcher</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="fonts/stylesheet.css">
+    <style>
+      h2 {
+        font-size: 40px;
+      }
+
+      html, body, div {
+        margin: 0;
+        padding: 0;
+      }
+
+      #rom-check {
+        padding: 20px;
+        font-family: vigaregular;
+        font-size: 150%;
+      }
+
+      #rom-check h1 {
+        margin: 0;
+      }
+
+      #rom-check img {
+        position: relative;
+        top: 3px;
+      }
+
+      #rom-check .input-status {
+        text-align: center;
+        float: left;
+        max-width: 150px;
+        min-width: 100px;
+        margin-left: 20px;
+        margin-right: 20px;
+      }
+
+      #rom-check .input-status ul {
+        margin-left: 0;
+        padding-left: 0;
+      }
+
+      #rom-check .input-status li {
+        list-style-type: none;
+        /*text-align: center;*/
+        border-width: 1px;
+        border: 1px solid white;
+      }
+
+      #rom-check .input-status .pressed {
+        background: red;
+        color: white;
+        font-weight: bold;
+        border: 1px solid black;
+      }
+
+      #rom-check .input {
+        opacity: 0.5;
+      }
+
+      #moonshot {
+        background: #222;
+        color: #DDD;
+      }
+
+      #moonshot .game {
+        text-align: center;
+      }
+
+      #moonshot .game img {
+        margin-top: 5%;
+        width: auto;
+        height: 75%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="rom-check" class="page">
+      <h1>
+        ROM CHECK
+      </h1>
+      <h2>
+      Press <img src="images/button1.png"> to connect each joystick.
+      <br>
+      Hold <img src="images/action.png" title="Action"> to shoot the moon.
+      </h2>
+      <div id="other-inputs" class="input-status">
+        <span class="name">Main buttons</span>
+        <ul>
+          <li class="action input">action</li>
+          <li class="start1 input">start1</li>
+          <li class="start2 input">start2</li>
+          <li class="start3 input">start3</li>
+          <li class="start4 input">start4</li>
+          <li class="coin1 input">coin1</li>
+          <li class="coin2 input">coin2</li>
+        </ul>
+      </div>
+      <div id="stick0" class="input-status">
+        <span class="name">Not connected</span>
+        <ul>
+          <li class="up input">^</li>
+          <li class="left input">&lt;=</li>
+          <li class="down input">v</li>
+          <li class="right input">=&gt;</li>
+          <li class="button1 input">1</li>
+          <li class="button2 input">2</li>
+          <li class="button3 input">3</li>
+          <li class="button4 input">4</li>
+          <li class="button5 input">5</li>
+          <li class="button6 input">6</li>
+        </ul>
+      </div>
+      <div id="stick1" class="input-status">
+        <p class="name">Not connected</p>
+        <ul>
+          <li class="up input">^</li>
+          <li class="left input">&lt;=</li>
+          <li class="down input">v</li>
+          <li class="right input">=&gt;</li>
+          <li class="button1 input">1</li>
+          <li class="button2 input">2</li>
+          <li class="button3 input">3</li>
+          <li class="button4 input">4</li>
+          <li class="button5 input">5</li>
+          <li class="button6 input">6</li>
+        </ul>
+      </div>
+      <div id="stick2" class="input-status">
+        <p class="name">Not connected</p>
+        <ul>
+          <li class="up input">^</li>
+          <li class="left input">&lt;=</li>
+          <li class="down input">v</li>
+          <li class="right input">=&gt;</li>
+          <li class="button1 input">1</li>
+          <li class="button2 input">2</li>
+          <li class="button3 input">3</li>
+          <li class="button4 input">4</li>
+          <li class="button5 input">5</li>
+          <li class="button6 input">6</li>
+        </ul>
+      </div>
+      <div id="stick3" class="input-status">
+        <p class="name">Not connected</p>
+        <ul>
+          <li class="up input">^</li>
+          <li class="left input">&lt;=</li>
+          <li class="down input">v</li>
+          <li class="right input">=&gt;</li>
+          <li class="button1 input">1</li>
+          <li class="button2 input">2</li>
+          <li class="button3 input">3</li>
+          <li class="button4 input">4</li>
+          <li class="button5 input">5</li>
+          <li class="button6 input">6</li>
+        </ul>
+      </div>
+    </div> <!-- rom-check page end -->
+
+    <div id="moonshot" class="page">
+      <div id="guggenheim-container">
+        <div class="guggenheim-slider">
+            <div class='guggenheim-item game' data-name="ky_route_zero">
+              <img src="games/ky_route_zero.jpg">
+              <h2>Kentucky Route Zero</h2>
+            </div>
+            <div class='guggenheim-item game' data-name="mmug">
+              <img src="games/mmug.png">
+              <h2>Meat Makes Us Go?</h2>
+            </div>
+            <div class='guggenheim-item game' data-name="fauna_fight">
+              <img src="games/fauna_fight.png">
+              <h2>Fauna Fight</h2>
+            </div>
+        </div>
+    </div>
+    </div> <!-- moonshot page end -->
+
+    <script src="lib/vendor/jquery-2.0.3.min.js"></script>
+    <script src="lib/vendor/underscore-min.js"></script>
+    <script src="lib/vendor/guggenheim.min.js"></script>
+    <script>
+      $('#moonshot').hide();
+
+      var Gamepad  = require('./lib/vendor/gamepad.js').Gamepad;
+      var Input    = require('./lib/input.js').Input;
+      var Moonshot = require('./lib/moonshot.js').Moonshot;
+      var RomCheck = require('./lib/rom_check.js').RomCheck;
+
+      var gamepad   = new Gamepad();
+      var rom_check = new RomCheck();
+      var moonshot  = new Moonshot();
+      var input     = Input.instance()
+      input.init(gamepad);
+
+      rom_check.launch(input, function() {
+        $('#rom-check').hide();
+        $('#moonshot').fadeIn();
+        moonshot.launch(input, guggenheim);
+      });
+    </script>
+  </body>
+</html>

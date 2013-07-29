@@ -1,0 +1,26 @@
+{
+  "name": "moonshot",
+  "main": "index.html",
+  "description": "Game launcher for the Lexitron arcade machine.",
+  "version": "0.1.0",
+  "keywords": [ "lexitron", "indie", "games", "launcher", "frontend" ],
+  "window": {
+    // For production, use kiosk mode.
+    //"kiosk": true,
+    "fullscreen": true,
+    "frame": false,
+    //"icon": "link.png",
+    //"toolbar": true,
+    "toolbar": false,
+    "width": 1200,
+    "height": 800,
+    "position": "mouse",
+    "min_width": 400,
+    "min_height": 200
+    // "max_width": 800,
+    // "max_height": 600
+  }
+  // "webkit": {
+  //   "plugin": true
+  // }
+}
