@@ -39,9 +39,12 @@
       mapping[Input.keys['4']]    = 'start4';
       mapping[Input.keys['9']]    = 'coin1';
       mapping[Input.keys['0']]    = 'coin2';
-      mapping[Input.keys['F']]    = 'fullscreen';
-      mapping[Input.keys['Q']]    = 'quit';
-      mapping[Input.keys['I']]    = 'inspector';
+      // DEBUGGING KEYS
+      mapping[Input.keys['F']]           = 'fullscreen';
+      mapping[Input.keys['Q']]           = 'quit';
+      mapping[Input.keys['I']]           = 'inspector';
+      mapping[Input.keys['LEFT_ARROW']]  = 'left';
+      mapping[Input.keys['RIGHT_ARROW']] = 'right';
 
       _.extend(mapping, {
         AXIS_LEFT:            'left'
