@@ -25,7 +25,7 @@
     var templateData = {
       games: games
     };
-    $( '.guggenheim-slider' ).append(
+    $( '.slides' ).append(
         template( templateData )
     );
   };
@@ -41,15 +41,17 @@
     ]
     ,_fontIndex: 0
 
-    ,launch: function(input, guggenheim, callback) {
+    ,launch: function(input, Reveal, callback) {
       this._cp = require('child_process');
       this._finish = callback;
       this._input = input;
-      this._gallery = guggenheim('#guggenheim-container', {
+      this._gallery = Reveal;
+      Reveal.initialize({
         width: window.innerWidth
         ,height: window.innerHeight
-        ,rows: 1
-        ,cols: 1
+        ,loop: true
+        ,keyboard: false
+        ,autoslide: 1000
       });
 
       this.setupInputs();
@@ -63,13 +65,13 @@
         switch(button) {
           case 'button1':
           case 'action':
-            this.startGame(this._gallery.currentPage() - 1);
+            this.startGame(this._gallery.getIndices().h - 1);
             break;
           case 'left':
-            this._gallery.jumpTo(this._gallery.currentPage() - 1);
+            this._gallery.prev();
             break;
           case 'right':
-            this._gallery.jumpTo(this._gallery.currentPage() + 1);
+            this._gallery.next();
             break;
           case 'button5':
             this._nextFont();
