@@ -169,7 +169,7 @@
         <div class="slides">
             <script type="text/template" class="template">
               <% _.each( rc.games, function( game ){ %>
-                <section class='game' data-name='<%= game.slug %>' data-background='games/<%= game.images.main %>' style='height: <%= window.innerHeight %>px; width: <%= window.innerWidth %>px;'>
+                <section class='game' data-name='<%= game.slug %>' data-background='games/<%= game.images.main %>'>
                   <h2><%= game.name %></h2>
                 </section>
               <% }); %>
