@@ -166,18 +166,14 @@
     <div id="moonshot" class="page">
       <div id="guggenheim-container">
         <div class="guggenheim-slider">
-            <div class='guggenheim-item game' data-name="ky_route_zero">
-              <img src="games/ky_route_zero.jpg">
-              <h2>Kentucky Route Zero</h2>
-            </div>
-            <div class='guggenheim-item game' data-name="mmug">
-              <img src="games/mmug.png">
-              <h2>Meat Makes Us Go?</h2>
-            </div>
-            <div class='guggenheim-item game' data-name="fauna_fight">
-              <img src="games/fauna_fight.png">
-              <h2>Fauna Fight</h2>
-            </div>
+            <script type="text/template" class="template">
+              <% _.each( rc.games, function( game ){ %>
+                <div class='guggenheim-item game' data-name='<%= game.slug %>'>
+                  <img src="games/<%= game.images.main %>">
+                  <h2><%= game.name %></h2>
+                </div>
+              <% }); %>
+            </script>
         </div>
     </div>
     </div> <!-- moonshot page end -->
