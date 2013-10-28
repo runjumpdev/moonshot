@@ -169,7 +169,7 @@
             <script type="text/template" class="template">
               <% _.each( rc.games, function( game ){ %>
                 <div class='guggenheim-item game' data-name='<%= game.slug %>'>
-                  <img src="games/<%= game.image %>">
+                  <img src="games/<%= game.images.main %>">
                   <h2><%= game.name %>
                 </div>
               <% }); %>

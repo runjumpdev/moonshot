@@ -1,4 +1,11 @@
 {
 	"name" : "Meat Makes Us Go?",
-	"image" : "mmug.png"
+	"images" : {
+		"main" : "mmug.png",
+		"screenshots" : {}
+	},
+	"author" : "Al Baker and Tim",
+	"website" : "http://mildmojo.github.io/are-you-kidding-me",
+	"twitter" : "meatmakesusgo",
+	"video" : "video"
 }

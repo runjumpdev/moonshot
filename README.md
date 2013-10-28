@@ -19,15 +19,6 @@ Why Node-Webkit?
 
 Future Work
 ===========
-- Load game list dynamically
-  - name
-  - author(s)
-  - website
-  - twitter
-  - launch script or command
-  - screen shots
-  - attract mode video
-  - controls?
 - Houston, the slim watchdog process that can relaunch Moonshot if it fails
 - Graphic design!
 - Attract mode (30s inactivity => slides/videos)
@@ -71,5 +62,30 @@ $ chmod u+x moonshot
 > cd ..
 > copy /b nw.exe+moonshot.nw moonshot.exe
 ```
+
+Adding games
+============
+Games can be added by including the following files:
+```
+- game_name // Game launch script
+- main_image_file // Main image to display in Moonshot
+- game_name.lex // JSON formatted game data
+```
+Each `.lex` file should contain at least the following structure:
+```
+{
+  "name" : "Game Name",
+  "images" : {
+    "main" : "main_image_file",
+    "screenshots" : {}
+  }
+  "author" : "Arthur Author",
+  "website" : "example.com/gamename",
+  "twitter" : "gamename",
+  "video" : "video_file"
+}
+```
+
+Some properties are not used in the present build, but will be in the near future.
 
 (For more info, see node-webkit's [How to package and distribute your apps](https://github.com/rogerwang/node-webkit/wiki/How-to-package-and-distribute-your-apps).)

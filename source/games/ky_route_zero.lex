@@ -1,4 +1,11 @@
 {
 	"name" : "Kentucky Route Zero",
-	"image" : "ky_route_zero.jpg"
+	"images" : {
+		"main" : "ky_route_zero.jpg",
+		"screenshots" : {}
+	},
+	"author" : "Cardboard Computer",
+	"website" : "kentuckyroutezero.com",
+	"twitter" : "cardboardcompy",
+	"video" : "video"
 }
