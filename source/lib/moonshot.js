@@ -2,12 +2,36 @@
   'use strict';
 
   var _ = require('./vendor/underscore-min.js'),
-      $ = require('./vendor/jquery-2.0.3.min.js');
+      $ = require('./vendor/jquery-2.0.3.min.js'),
+      fs = require('fs');
 
   var gui = window.require('nw.gui');
   var win = gui.Window.get();
 
-  var Moonshot = function(){};
+  var Moonshot = function(){
+    _.templateSettings.variable = 'rc';
+
+    var template = _.template($( 'script.template' ).html())
+      , games = [];
+      fs.readdirSync('./games/')
+        .filter(function(file){ return file.indexOf('.lex') !== -1 })
+        .forEach(function(file){
+          var game = JSON.parse(
+            fs.readFileSync('./games/'+file, 'utf8')
+          );
+          game.slug = game.name
+            .toLowerCase()
+            .replace(/ /g,'-')
+            .replace(/[^\w-]+/g,'');
+          games.push(game);
+        });
+    var templateData = {
+      games: games
+    };
+    $( '.guggenheim-slider' ).append(
+        template( templateData )
+    );
+  };
 
   Moonshot.prototype = {
     _fonts: [
