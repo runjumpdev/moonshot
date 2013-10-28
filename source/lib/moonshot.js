@@ -19,10 +19,7 @@
           var game = JSON.parse(
             fs.readFileSync('./games/'+file, 'utf8')
           );
-          game.slug = game.name
-            .toLowerCase()
-            .replace(/ /g,'-')
-            .replace(/[^\w-]+/g,'');
+          game.slug = file.replace('.lex', '');
           games.push(game);
         });
     var templateData = {
@@ -95,10 +92,10 @@
 
     ,startGame: _.throttle(function(idx) {
       var gameObj = $('#moonshot .game')[idx];
-      var gameName = $(gameObj).data('name');
+      var gameSlug = $(gameObj).data('name');
 
       this._input.teardown();
-      this._cp.exec('bash games/' + gameName, _.bind(function(error, stdout, stderr) {
+      this._cp.exec('bash games/' + gameSlug, _.bind(function(error, stdout, stderr) {
         if (error) {
           console.log(error.stack);
           console.log('Error code: '+error.code);
