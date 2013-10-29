@@ -52,8 +52,8 @@
         ,loop: true
         ,keyboard: false
         ,autoslide: 1000
+        ,transition: 'cube'
       });
-
       this.setupInputs();
       this._setFont();
     }
@@ -68,10 +68,10 @@
             this.startGame(this._gallery.getIndices().h - 1);
             break;
           case 'left':
-            this._gallery.prev();
+            this._gallery.left();
             break;
           case 'right':
-            this._gallery.next();
+            this._gallery.right();
             break;
           case 'button5':
             this._nextFont();
