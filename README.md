@@ -58,30 +58,27 @@ $ cd source
 $ ../node-webkit.app/Contents/MacOS/node-webkit .
 ```
 
-4. To build the launcher app, zip the source directory and concatenate it with
-   the node-webkit executable.
+4. To build the launcher app on Windows/Linux, zip the source directory and concatenate it with the node-webkit executable.
 
 ```
-Linux:
 $ cd source
 $ zip -r ../moonshot.nw *
 $ cd ..
 $ cat nw moonshot.nw > moonshot
 $ chmod u+x moonshot
 
-Windows:
 > cd source
 > pkzip -r ..\moonshot.nw *.*
 > cd ..
 > copy /b nw.exe+moonshot.nw moonshot.exe
+```
 
-OS X:
+Or, for OS X, copy the files to node-webkit.app/Contents/Resources/app.nw
+
+```
 $ cd source
-$ zip -r ../moonshot.nw *
+$ rsync -r -R * ../node-webkit.app/Contents/Resources/app.nw
 $ cd ..
-$ cat node-webkit.app/Contents/MacOS/node-webkit moonshot.nw > moonshot
-$ chmod u+x moonshot
-
 ```
 
 (For more info, see node-webkit's [How to package and distribute your apps](https://github.com/rogerwang/node-webkit/wiki/How-to-package-and-distribute-your-apps).)
