@@ -77,8 +77,7 @@ Or, for OS X, copy the files to node-webkit.app/Contents/Resources/app.nw
 
 ```
 $ cd source
-$ rsync -r -R * ../node-webkit.app/Contents/Resources/app.nw
-$ cd ..
+$ cp -R ./ ../node-webkit.app/Contents/Resources/app.nw
 ```
 
 (For more info, see node-webkit's [How to package and distribute your apps](https://github.com/rogerwang/node-webkit/wiki/How-to-package-and-distribute-your-apps).)

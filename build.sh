@@ -1,7 +1,7 @@
 #!/bin/bash
 if [ "$(uname)" == "Darwin" ]; then
 	cd source
-	rsync -r -R * ../node-webkit.app/Contents/Resources/app.nw
+	cp -R ./ ../node-webkit.app/Contents/Resources/app.nw
 	cd ..     
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 	cd source
