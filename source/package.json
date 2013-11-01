@@ -8,10 +8,10 @@
     // For production, use kiosk mode.
     //"kiosk": true,
     "fullscreen": true,
-    "frame": true,
+    "frame": false,
     //"icon": "link.png",
     //"toolbar": true,
-    "toolbar": true,
+    "toolbar": false,
     "width": 1200,
     "height": 800,
     "position": "mouse",
