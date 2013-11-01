@@ -25,7 +25,7 @@
     var templateData = {
       games: games
     };
-    $( '.slides' ).append(
+    $( '.slides' ).prepend(
         template( templateData )
     );
   };
