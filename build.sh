@@ -1,5 +1,6 @@
 #!/bin/bash
 if [ "$(uname)" == "Darwin" ]; then
+	rm -rf node-webkit.app/Contents/Resources/app.nw
 	cd source
 	cp -R ./ ../node-webkit.app/Contents/Resources/app.nw
 	cd ..     

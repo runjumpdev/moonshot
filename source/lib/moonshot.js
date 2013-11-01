@@ -14,12 +14,12 @@
     var template = _.template($( 'script.template' ).html())
       , games = [];
       fs.readdirSync('./games/')
-        .filter(function(file){ return file.indexOf('.lex') !== -1 })
-        .forEach(function(file){
+        .filter(function(file) { return fs.statSync('./games/'+file).isDirectory() === true })
+        .forEach(function(gameSlug) {
           var game = JSON.parse(
-            fs.readFileSync('./games/'+file, 'utf8')
+            fs.readFileSync('./games/'+gameSlug+'/lexitron.json', 'utf8')
           );
-          game.slug = file.replace('.lex', '');
+          game.slug = gameSlug;
           games.push(game);
         });
     var templateData = {
