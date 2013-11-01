@@ -14,18 +14,18 @@
     var template = _.template($( 'script.template' ).html())
       , games = [];
       fs.readdirSync('./games/')
-        .filter(function(file){ return file.indexOf('.lex') !== -1 })
-        .forEach(function(file){
+        .filter(function(file) { return fs.statSync('./games/'+file).isDirectory() === true })
+        .forEach(function(gameSlug) {
           var game = JSON.parse(
-            fs.readFileSync('./games/'+file, 'utf8')
+            fs.readFileSync('./games/'+gameSlug+'/lexitron.json', 'utf8')
           );
-          game.slug = file.replace('.lex', '');
+          game.slug = gameSlug;
           games.push(game);
         });
     var templateData = {
       games: games
     };
-    $( '.guggenheim-slider' ).append(
+    $( '.slides' ).prepend(
         template( templateData )
     );
   };
@@ -41,17 +41,19 @@
     ]
     ,_fontIndex: 0
 
-    ,launch: function(input, guggenheim, callback) {
+    ,launch: function(input, Reveal, callback) {
       this._cp = require('child_process');
       this._finish = callback;
       this._input = input;
-      this._gallery = guggenheim('#guggenheim-container', {
+      this._gallery = Reveal;
+      Reveal.initialize({
         width: window.innerWidth
         ,height: window.innerHeight
-        ,rows: 1
-        ,cols: 1
+        ,loop: true
+        ,keyboard: false
+        ,autoslide: 1000
+        ,transition: 'cube'
       });
-
       this.setupInputs();
       this._setFont();
     }
@@ -63,13 +65,13 @@
         switch(button) {
           case 'button1':
           case 'action':
-            this.startGame(this._gallery.currentPage() - 1);
+            this.startGame(this._gallery.getIndices().h - 1);
             break;
           case 'left':
-            this._gallery.jumpTo(this._gallery.currentPage() - 1);
+            this._gallery.left();
             break;
           case 'right':
-            this._gallery.jumpTo(this._gallery.currentPage() + 1);
+            this._gallery.right();
             break;
           case 'button5':
             this._nextFont();

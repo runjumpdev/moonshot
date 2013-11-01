@@ -66,6 +66,7 @@
       #moonshot {
         background: #222;
         color: #DDD;
+        height: 100%;
       }
 
       #moonshot .game {
@@ -78,6 +79,7 @@
         height: 75%;
       }
     </style>
+    <link rel="stylesheet" href="css/reveal.min.css">
   </head>
   <body>
     <div id="rom-check" class="page">
@@ -164,14 +166,13 @@
     </div> <!-- rom-check page end -->
 
     <div id="moonshot" class="page">
-      <div id="guggenheim-container">
-        <div class="guggenheim-slider">
+      <div class="reveal">
+        <div class="slides">
             <script type="text/template" class="template">
               <% _.each( rc.games, function( game ){ %>
-                <div class='guggenheim-item game' data-name='<%= game.slug %>'>
-                  <img src="games/<%= game.images.main %>">
+                <section class='game' data-name='<%= game.slug %>' data-background='games/<%- game.slug+"/"+game.images.main %>'>
                   <h2><%= game.name %></h2>
-                </div>
+                </section>
               <% }); %>
             </script>
         </div>
@@ -180,7 +181,7 @@
 
     <script src="lib/vendor/jquery-2.0.3.min.js"></script>
     <script src="lib/vendor/underscore-min.js"></script>
-    <script src="lib/vendor/guggenheim.min.js"></script>
+    <script src="lib/vendor/reveal.min.js"></script>
     <script>
       $('#moonshot').hide();
 
@@ -198,7 +199,7 @@
       rom_check.launch(input, function() {
         $('#rom-check').hide();
         $('#moonshot').fadeIn();
-        moonshot.launch(input, guggenheim);
+        moonshot.launch(input, Reveal);
       });
     </script>
   </body>
