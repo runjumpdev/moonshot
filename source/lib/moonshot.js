@@ -31,7 +31,7 @@
     this.games = games;
   };
 
-  Moonshot.prototype = _.extend({
+  Moonshot.prototype = {
     _fonts: [
       'bitterregular'
       ,'armataregular'
@@ -104,10 +104,9 @@
       var gameObj = $('#moonshot .game')[idx];
       var gameSlug = $(gameObj).data('name');
       var exec = this.games[gameSlug].exec || ""
-        , args = this.games[gameSlug].args || ""
-        , cwd = this.games[gameSlug].cwd || "";
+        , args = this.games[gameSlug].args || "";
 
-      process.chdir(cwd);
+      if(this.games[gameSlug].cwd) process.chdir(cwd);
 
       this._input.teardown();
       this._cp.exec(exec+" "+args, _.bind(function(error, stdout, stderr) {
@@ -144,7 +143,7 @@
     ,_clamp: function(num, min, max) {
       return Math.min(Math.max(min, num), max);
     }
-  });
+  };
 
   exports.Moonshot = Moonshot;
 
