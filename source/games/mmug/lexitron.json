@@ -1,11 +1,23 @@
 {
-	"name" : "Meat Makes Us Go?",
-	"images" : {
-		"main" : "mmug.png",
-		"screenshots" : {}
-	},
-	"author" : "Al Baker and Tim",
-	"website" : "http://mildmojo.github.io/are-you-kidding-me",
-	"twitter" : "meatmakesusgo",
-	"video" : "video"
+	"name": "Meat Makes Us Go?",
+	"description": "Can you beat these puzzles?",
+
+	"byline": "Al Baker and Tim",
+	"website": "http://mildmojo.github.io/are-you-kidding-me",
+	"twitter": "meatmakesusgo",
+
+	"images": ["mmug.png"],
+	"videos": [],
+	"players_min": 1,
+ "players_max": 1,
+	 "controls": [
+  {
+   "player": 1,
+   "button1": "Thumpump"
+  }
+ ],
+
+	"exec": "/home/lexitron/code/mmug_linux/MeatMakesUsGo",
+	"args": "",
+	"cwd": "/home/lexitron/code/mmug_linux/"
 }

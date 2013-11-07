@@ -68,16 +68,6 @@
         color: #DDD;
         height: 100%;
       }
-
-      #moonshot .game {
-        text-align: center;
-      }
-
-      #moonshot .game img {
-        margin-top: 5%;
-        width: auto;
-        height: 75%;
-      }
     </style>
     <link rel="stylesheet" href="css/reveal.min.css">
   </head>
@@ -169,11 +159,17 @@
       <div class="reveal">
         <div class="slides">
             <script type="text/template" class="template">
-              <% _.each( rc.games, function( game ){ %>
-                <section class='game' data-name='<%= game.slug %>' data-background='games/<%= game.slug+"/"+game.images.main %>'>
-                  <h2><%= game.name %></h2>
+              <% for( var idx in rc.games) { var game = rc.games[idx]; console.log(game); %>
+                <section class='game' data-name='<%= game.slug %>'>
+                  <section>
+                    <img src='games/<%- game.slug+"/"+game.images[0] %>' />
+                  </section>
+                  <section>
+                    <h1><%= game.name %></h1>
+                    <p><%= game.description %></p>
+                  </section>
                 </section>
-              <% }); %>
+              <% } %>
             </script>
         </div>
     </div>
