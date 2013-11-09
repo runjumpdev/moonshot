@@ -45,6 +45,8 @@
       mapping[Input.keys['I']]           = 'inspector';
       mapping[Input.keys['LEFT_ARROW']]  = 'left';
       mapping[Input.keys['RIGHT_ARROW']] = 'right';
+      mapping[Input.keys['UP_ARROW']]    = 'up';
+      mapping[Input.keys['DOWN_ARROW']]  = 'down';
 
       _.extend(mapping, {
         AXIS_LEFT:            'left'

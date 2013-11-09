@@ -8,26 +8,27 @@
   var gui = window.require('nw.gui');
   var win = gui.Window.get();
 
-  var Moonshot = function(){
+  var Moonshot = function Moonshot(){
     _.templateSettings.variable = 'rc';
+    var games = {};
 
-    var template = _.template($( 'script.template' ).html())
-      , games = [];
-      fs.readdirSync('./games/')
-        .filter(function(file) { return fs.statSync('./games/'+file).isDirectory() === true })
-        .forEach(function(gameSlug) {
-          var game = JSON.parse(
-            fs.readFileSync('./games/'+gameSlug+'/lexitron.json', 'utf8')
-          );
-          game.slug = gameSlug;
-          games.push(game);
-        });
+    var template = _.template($( 'script.template' ).html());
+    fs.readdirSync('./games/')
+      .filter(function(file) { return fs.statSync('./games/'+file).isDirectory() === true })
+      .forEach(function(gameSlug) {
+        var game = JSON.parse(
+          fs.readFileSync('./games/'+gameSlug+'/lexitron.json', 'utf8')
+        );
+        game.slug = gameSlug;
+        games[game.slug] = game;
+      });
     var templateData = {
       games: games
     };
-    $( '.slides' ).prepend(
-        template( templateData )
+    $( '.slides' ).append(
+      template( templateData )
     );
+    this.games = games;
   };
 
   Moonshot.prototype = {
@@ -39,6 +40,7 @@
       ,'share_tech_monoregular'
       ,'vigaregular'
     ]
+
     ,_fontIndex: 0
 
     ,launch: function(input, Reveal, callback) {
@@ -65,13 +67,19 @@
         switch(button) {
           case 'button1':
           case 'action':
-            this.startGame(this._gallery.getIndices().h - 1);
+            this.startGame(this._gallery.getIndices().h);
             break;
           case 'left':
             this._gallery.left();
             break;
           case 'right':
             this._gallery.right();
+            break;
+          case 'up':
+            this._gallery.up();
+            break;
+          case 'down':
+            this._gallery.down();
             break;
           case 'button5':
             this._nextFont();
@@ -95,9 +103,13 @@
     ,startGame: _.throttle(function(idx) {
       var gameObj = $('#moonshot .game')[idx];
       var gameSlug = $(gameObj).data('name');
+      var exec = this.games[gameSlug].exec || ""
+        , args = this.games[gameSlug].args || "";
+
+      if(this.games[gameSlug].cwd) process.chdir(cwd);
 
       this._input.teardown();
-      this._cp.exec('bash games/' + gameSlug, _.bind(function(error, stdout, stderr) {
+      this._cp.exec(exec+" "+args, _.bind(function(error, stdout, stderr) {
         if (error) {
           console.log(error.stack);
           console.log('Error code: '+error.code);

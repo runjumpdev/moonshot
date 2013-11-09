@@ -1,11 +1,24 @@
 {
-	"name" : "Kentucky Route Zero",
-	"images" : {
-		"main" : "ky_route_zero.jpg",
-		"screenshots" : {}
-	},
-	"author" : "Cardboard Computer",
-	"website" : "kentuckyroutezero.com",
-	"twitter" : "cardboardcompy",
-	"video" : "video"
+	"name": "Kentucky Route Zero",
+	"description": "Secret underground roads in my Kentucky?",
+
+	"byline": "Cardboard Computer",
+	"website": "kentuckyroutezero.com",
+	"twitter": "cardboardcompy",
+
+	"images": ["ky_route_zero.jpg"],
+	"videos": [],
+	"players_min": 1,
+ "players_max": 1,
+ "controls": [
+  {
+   "player": 1,
+   "left": "Walk left",
+   "right": "Walk right"
+  }
+ ],
+
+	"exec": "/home/lexitron/.steam/steam/SteamApps/common/KentuckyRouteZero/KentuckyRouteZero",
+	"args": "",
+	"cwd": "/home/lexitron/.steam/steam/SteamApps/common/KentuckyRouteZero/"
 }
