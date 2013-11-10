@@ -160,11 +160,11 @@
         <div class="slides">
             <script type="text/template" class="template">
               <% for ( var idx in rc.games) { var game = rc.games[idx]; %>
-                <section class='game' data-name='<%= game.slug %>'>
+                <section class='game autoslide-1000' data-name='<%= game.slug %>'>
                   <section>
                     <img src='games/<%- game.slug+"/"+game.images[0] %>' />
                   </section>
-                  <section>
+                  <section class='autoslide-1000'>
                     <h1>
                       <%= game.name %>
                     </h1>
