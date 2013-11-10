@@ -67,7 +67,7 @@
         win.window.clearTimeout(this._attractTimer);
         this._attractTimer = win.window.setTimeout(
           function() {self.setAttractMode(true);}
-          , 10000);
+          , 30000);
       }
       // if we want to enable or
       if (enable || this._attractMode) {
