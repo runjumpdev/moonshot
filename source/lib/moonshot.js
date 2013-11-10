@@ -44,7 +44,7 @@
 
     ,_fontIndex: 0
 
-    ,launch: function(input, Reveal, callback) {
+    ,launch: function(input, Reveal, Parallax, callback) {
       this._cp = require('child_process');
       this._finish = callback;
       this._input = input;
@@ -57,6 +57,17 @@
         ,transition: 'linear'
         ,autoSlide: 0
       });
+      var scene = window.document.getElementById('scene');
+      this._parallax = new Parallax(scene);
+      // this is mainly for debugging
+      this._parallax.onMouseMove = null;
+
+      var slideCount = $('.slides')[0].childElementCount
+        ,self = this;
+      this._gallery.addEventListener('slidechanged', function(event) {
+        self._parallax.ix = event.indexh/slideCount;
+        self._parallax.iy = event.indexv;
+      });
       this.setupInputs();
       this._setFont();
       this.setAttractMode(true);
@@ -64,8 +75,8 @@
     ,setAttractMode: function(enable) {
       var self = this;
       if(!enable) {
-        win.window.clearTimeout(this._attractTimer);
-        this._attractTimer = win.window.setTimeout(
+        window.clearTimeout(this._attractTimer);
+        this._attractTimer = window.setTimeout(
           function() {self.setAttractMode(true);}
           , 30000);
       }

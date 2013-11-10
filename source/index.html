@@ -68,6 +68,10 @@
         color: #DDD;
         height: 100%;
       }
+
+      #scene {
+        position: absolute;
+      }
     </style>
     <link rel="stylesheet" href="css/reveal.min.css">
   </head>
@@ -156,6 +160,13 @@
     </div> <!-- rom-check page end -->
 
     <div id="moonshot" class="page">
+      <ul id="scene">
+        <li class="layer" data-depth="0.5">
+          <div style="display:block;background:red;width:200px;height:200px;">
+            hi
+          </div>
+        </li>
+      </ul>
       <div class="reveal">
         <div class="slides">
             <script type="text/template" class="template">
@@ -198,6 +209,7 @@
     <script src="lib/vendor/jquery-2.0.3.min.js"></script>
     <script src="lib/vendor/underscore-min.js"></script>
     <script src="lib/vendor/reveal.min.js"></script>
+    <script src="lib/vendor/parallax.js"></script>
     <script>
       $('#moonshot').hide();
 
@@ -215,7 +227,7 @@
       rom_check.launch(input, function() {
         $('#rom-check').hide();
         $('#moonshot').fadeIn();
-        moonshot.launch(input, Reveal);
+        moonshot.launch(input, Reveal, Parallax);
       });
     </script>
   </body>
