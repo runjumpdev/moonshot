@@ -54,7 +54,7 @@
         ,height: window.innerHeight
         ,loop: true
         ,keyboard: false
-        ,transition: 'cube'
+        ,transition: 'linear'
         ,autoSlide: 0
       });
       this.setupInputs();
