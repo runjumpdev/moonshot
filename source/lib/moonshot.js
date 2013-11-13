@@ -28,6 +28,7 @@
     $( '.slides' ).append(
       template( templateData )
     );
+    $('.slides script').remove();
     this.games = games;
   };
 
@@ -53,17 +54,38 @@
         ,height: window.innerHeight
         ,loop: true
         ,keyboard: false
-        ,autoslide: 1000
-        ,transition: 'cube'
+        ,transition: 'linear'
+        ,autoSlide: 0
       });
       this.setupInputs();
       this._setFont();
+      this.setAttractMode(true);
     }
-
+    ,setAttractMode: function(enable) {
+      var self = this;
+      if(!enable) {
+        win.window.clearTimeout(this._attractTimer);
+        this._attractTimer = win.window.setTimeout(
+          function() {self.setAttractMode(true);}
+          , 30000);
+      }
+      // if we want to enable or
+      if (enable || this._attractMode) {
+        $('[class*="autoslide"]').each(function(i, slide) {
+          var delay = enable ? slide.className.match(/autoslide-(\d+)/)[1] : 0;
+          slide.setAttribute('data-autoslide', delay);
+          console.log('setting to '+delay);
+        });
+        this._attractMode = !this._attractMode ? 1 : 0;
+        this._gallery.configure({ autoSlide: this._attractMode });
+        console.log('set attract mode to '+this._attractMode);
+      }
+    }
     ,setupInputs: function() {
       var input = this._input;
 
       input.on('button_down', _.bind(function(button, padnum) {
+        this.setAttractMode(false);
         switch(button) {
           case 'button1':
           case 'action':
