@@ -60,7 +60,7 @@
       Reveal.initialize({
         width: window.innerWidth
         ,height: window.innerHeight
-        ,margin: 0.125
+        ,margin: 0.25
         ,loop: true
         ,keyboard: false
         ,transition: 'cube'
