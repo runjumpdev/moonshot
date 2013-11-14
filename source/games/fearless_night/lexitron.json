@@ -1,15 +1,15 @@
 {
-	"name" : "Jetpack Fandango",
+	"name" : "Fearless Night",
 	"description": "",
 
-	"byline": "OnlySlightly",
-	"website": "",
+	"byline": "Shobu Games",
+	"website": "ShobuGames.com",
 	"twitter": "",
 	"facebook": "",
 
-	"images": ["jetpackfandango.png"],
+	"images": ["fearlessnight.png"],
 	"videos": [],
-	"players_min": 2,
+	"players_min": 1,
 	"players_max": 2,
 	"controls": [
 		{
@@ -28,8 +28,7 @@
 		}
 	],
 
-	"exec": "games/jetback_fandango/jetpackfandangolexitron.exe",
+	"exec": "games/fearless_night/bin/fnalpha.exe",
 	"args": "",
-	"cwd": "games/jetback_fandango/"
-
+	"cwd": "games/fearless_night/bin/"
 }
