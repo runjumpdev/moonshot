@@ -76,11 +76,9 @@
         $('[class*="autoslide"]').each(function(i, slide) {
           var delay = enable ? slide.className.match(/autoslide-(\d+)/)[1] : 0;
           slide.setAttribute('data-autoslide', delay);
-          console.log('setting to '+delay);
         });
         this._attractMode = !this._attractMode ? 1 : 0;
         this._gallery.configure({ autoSlide: this._attractMode });
-        console.log('set attract mode to '+this._attractMode);
       }
     }
     ,setupInputs: function() {
@@ -126,15 +124,13 @@
 
     ,startGame: _.throttle(function(idx) {
       var gameObj = $('#moonshot .game')[idx];
-      var gameSlug = $(gameObj).data('name');
+      var gameSlug = $(gameObj).data('slug');
       var exec = this.games[gameSlug].exec || ""
         , args = this.games[gameSlug].args || "";
-
       //if(this.games[gameSlug].cwd) process.chdir(cwd);
 
       this._input.teardown();
-	  //exec+" "+args
-      this._cp.exec("notepad", _.bind(function(error, stdout, stderr) {
+      this._cp.exec(exec+" "+args, _.bind(function(error, stdout, stderr) {
         if (error) {
           console.log(error.stack);
           console.log('Error code: '+error.code);
@@ -142,7 +138,7 @@
         }
         console.log('Child Process STDOUT: '+stdout);
         console.log('Child Process STDERR: '+stderr);
-        //this.setupInputs();
+        this.setupInputs();
       }, this));
     }, 5000, {trailing: false})
 
