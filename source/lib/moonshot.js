@@ -64,7 +64,6 @@
       });
       this.setupInputs();
       this._setFont();
-      this.setAttractMode(true);
     }
     ,setAttractMode: function(enable) {
       var self = this;
@@ -129,11 +128,11 @@
       var gameObj = $('#moonshot .game')[idx];
       var gameSlug = $(gameObj).data('slug');
       var exec = this.games[gameSlug].exec || ""
-        , args = this.games[gameSlug].args || "";
-      //if(this.games[gameSlug].cwd) process.chdir(cwd);
+        , args = this.games[gameSlug].args || ""
+        , options = this.games[gameSlug].cwd ? {cwd: this.games[gameSlug].cwd} : {};
 
       this._input.teardown();
-      this._cp.exec(exec+" "+args, { cwd: cwd }, _.bind(function(error, stdout, stderr) {
+      this._cp.exec(exec+" "+args, options, _.bind(function(error, stdout, stderr) {
         if (error) {
           console.log(error.stack);
           console.log('Error code: '+error.code);
