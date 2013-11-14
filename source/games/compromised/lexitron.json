@@ -1,0 +1,35 @@
+{
+	"name" : "Compromised",
+	"description": "",
+
+	"byline": "Super Soul",
+	"website": "SuperSoul.co",
+	"twitter": "twitter.com/SuperSoulStudio",
+	"facebook": "facebook.com/SuperSoulStudio",
+
+	"images": ["compromised.png"],
+	"videos": [],
+	"players_min": 2,
+	"players_max": 2,
+	"controls": [
+		{
+			"player": 1,
+			"left": "Walk left",
+			"right": "Walk right",
+			"button1": "Quack",
+			"button2": "Jump"
+		},
+		{
+			"player": 2,
+			"left": "Walk left",
+			"right": "Walk right",
+			"button1": "Quack",
+			"button2": "Jump"
+		}
+	],
+
+	"exec": "c:/lexitron_launcher/games/FNAlpha/FNAlpha.exe",
+	"args": "",
+	"cwd": "c:/Program Files (x86)/Compromised/"
+
+}

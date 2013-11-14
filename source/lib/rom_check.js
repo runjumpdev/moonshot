@@ -36,7 +36,8 @@
         switch(button) {
           case 'button1':
           case 'action':
-            this._actionPressedTimer = setTimeout(_.bind(this.finish, this), 3000);
+            //this._actionPressedTimer = setTimeout(_.bind(this.finish, this), 3000);
+			this.finish();
             break;
           case 'inspector':
             win.showDevTools();

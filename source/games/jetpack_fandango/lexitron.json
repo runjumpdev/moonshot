@@ -1,0 +1,36 @@
+{
+	"name" : "Jetpack Fandango",
+	"description": "",
+
+	"byline": "OnlySlightly",
+	"website": "",
+	"twitter": "",
+	"facebook": "",
+
+	"images": ["jetpackfandango.png"],
+	"videos": [],
+	"players_min": 2,
+	"players_max": 2,
+	"controls": [
+		{
+			"player": 1,
+			"left": "Walk left",
+			"right": "Walk right",
+			"button1": "Quack",
+			"button2": "Jump"
+		},
+		{
+			"player": 2,
+			"left": "Walk left",
+			"right": "Walk right",
+			"button1": "Quack",
+			"button2": "Jump"
+		}
+	],
+
+	"exec": "notepad",
+	"exec1": "./games/jetback_fandango/jetpackfandangolexitron.exe",
+	"args": "",
+	"cwd": "./games/jetback_fandango/"
+
+}

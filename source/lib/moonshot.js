@@ -16,11 +16,13 @@
     fs.readdirSync('./games/')
       .filter(function(file) { return fs.statSync('./games/'+file).isDirectory() === true })
       .forEach(function(gameSlug) {
-        var game = JSON.parse(
-          fs.readFileSync('./games/'+gameSlug+'/lexitron.json', 'utf8')
-        );
-        game.slug = gameSlug;
-        games[game.slug] = game;
+		  if (fs.existsSync('./games/'+gameSlug+'/lexitron.json')) {
+			var game = JSON.parse(
+			  fs.readFileSync('./games/'+gameSlug+'/lexitron.json', 'utf8')
+			);
+			game.slug = gameSlug;
+			games[game.slug] = game;
+          }
       });
     var templateData = {
       games: games
@@ -54,7 +56,7 @@
         ,height: window.innerHeight
         ,loop: true
         ,keyboard: false
-        ,transition: 'linear'
+        ,transition: 'cube'
         ,autoSlide: 0
       });
       this.setupInputs();
@@ -128,10 +130,11 @@
       var exec = this.games[gameSlug].exec || ""
         , args = this.games[gameSlug].args || "";
 
-      if(this.games[gameSlug].cwd) process.chdir(cwd);
+      //if(this.games[gameSlug].cwd) process.chdir(cwd);
 
       this._input.teardown();
-      this._cp.exec(exec+" "+args, _.bind(function(error, stdout, stderr) {
+	  //exec+" "+args
+      this._cp.exec("notepad", _.bind(function(error, stdout, stderr) {
         if (error) {
           console.log(error.stack);
           console.log('Error code: '+error.code);
@@ -139,7 +142,7 @@
         }
         console.log('Child Process STDOUT: '+stdout);
         console.log('Child Process STDERR: '+stderr);
-        this.setupInputs();
+        //this.setupInputs();
       }, this));
     }, 5000, {trailing: false})
 
