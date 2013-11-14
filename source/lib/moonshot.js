@@ -21,6 +21,9 @@
 			  fs.readFileSync('./games/'+gameSlug+'/lexitron.json', 'utf8')
 			);
 			game.slug = gameSlug;
+      if(game.exec[0] === '/') {
+        game.exec = process.cwd() + game.exec;
+      }
 			games[game.slug] = game;
           }
       });
@@ -130,7 +133,7 @@
       //if(this.games[gameSlug].cwd) process.chdir(cwd);
 
       this._input.teardown();
-      this._cp.exec(exec+" "+args, _.bind(function(error, stdout, stderr) {
+      this._cp.exec(exec+" "+args, { cwd: cwd }, _.bind(function(error, stdout, stderr) {
         if (error) {
           console.log(error.stack);
           console.log('Error code: '+error.code);
