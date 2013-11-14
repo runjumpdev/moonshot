@@ -1,5 +1,5 @@
 {
-	"name" : "Jetpack Fandango",
+	"name" : "The Lickening",
 	"description": "",
 
 	"byline": "OnlySlightly",
@@ -7,7 +7,7 @@
 	"twitter": "",
 	"facebook": "",
 
-	"images": ["jetpackfandango.png"],
+	"images": ["thelickening.png"],
 	"videos": [],
 	"players_min": 2,
 	"players_max": 2,
@@ -28,8 +28,8 @@
 		}
 	],
 
-	"exec": "games/jetback_fandango/jetpackfandangolexitron.exe",
+	"exec": "games/lickening/lickening.exe",
 	"args": "",
-	"cwd": "games/jetback_fandango/"
+	"cwd": "games/lickening/"
 
 }

@@ -28,8 +28,8 @@
 		}
 	],
 
-	"exec": "c:/lexitron_launcher/games/FNAlpha/FNAlpha.exe",
+	"exec": "games/compromised/bin/compromised.exe",
 	"args": "",
-	"cwd": "c:/Program Files (x86)/Compromised/"
+	"cwd": "games/compromised/bin/"
 
 }
