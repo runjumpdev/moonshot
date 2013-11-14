@@ -16,17 +16,20 @@
     fs.readdirSync('./games/')
       .filter(function(file) { return fs.statSync('./games/'+file).isDirectory() === true })
       .forEach(function(gameSlug) {
-		  if (fs.existsSync('./games/'+gameSlug+'/lexitron.json')) {
-			var game = JSON.parse(
-			  fs.readFileSync('./games/'+gameSlug+'/lexitron.json', 'utf8')
-			);
-			game.slug = gameSlug;
-      if(game.exec[0] === '/') {
-        game.exec = process.cwd() + game.exec;
-      }
-			games[game.slug] = game;
-          }
-      });
+    if (fs.existsSync('./games/'+gameSlug+'/lexitron.json')) {
+     var game = JSON.parse(
+       fs.readFileSync('./games/'+gameSlug+'/lexitron.json', 'utf8')
+     );
+     game.slug = gameSlug;
+     if(game.exec[0] !== '/') {
+      game.exec = process.cwd() + '/' + game.exec;
+     }
+     if(game.cwd[0] !== '/') {
+      game.exec = process.cwd() + '/' + game.exec;
+     }
+     games[game.slug] = game;
+    }
+    });
     var templateData = {
       games: games
     };
@@ -132,7 +135,7 @@
         , options = this.games[gameSlug].cwd ? {cwd: this.games[gameSlug].cwd} : {};
 
       this._input.teardown();
-      this._cp.exec(exec+" "+args, options, _.bind(function(error, stdout, stderr) {
+      var gameProc = this._cp.exec(exec+" "+args, options, _.bind(function(error, stdout, stderr) {
         if (error) {
           console.log(error.stack);
           console.log('Error code: '+error.code);
@@ -142,6 +145,9 @@
         console.log('Child Process STDERR: '+stderr);
         this.setupInputs();
       }, this));
+     gameProc.on('exit', function (code) {
+       console.log('Child process exited with exit code '+code);
+     });
     }, 5000, {trailing: false})
 
     ,_nextFont: function() {
