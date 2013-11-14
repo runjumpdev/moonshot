@@ -74,7 +74,8 @@
         ,self = this;
       this._gallery.addEventListener('slidechanged', function(event) {
         self._parallax.ix = event.indexh/slideCount;
-        self._parallax.iy = event.indexv;
+        // removing this while we work on just reacting to dx
+        // self._parallax.iy = event.indexv;
       });
       this.setupInputs();
       this._setFont();

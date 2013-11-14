@@ -77,12 +77,38 @@
         margin: 0;
       }
 
+      #scene li div {
+        position: relative;
+      }
+
       .horsie {
-        background: url(images/horsie.png);
+        background: url(images/horsie.svg);
         width: 80px;
         height: 60px;
+        top: 1273px;
         background-size: cover;
-        image-rendering:-webkit-optimize-contrast;
+      }
+
+      .dude {
+        background: url(images/dude.svg);
+        width: 60px;
+        height: 80px;
+        top: 1061px;
+        background-size: cover;
+      }
+
+      .grass {
+        background: url(images/grass.svg);
+        width: 200%;
+        height: 50px;
+        top: 800px;
+        background-size: 50px;
+        background-repeat: repeat-x;
+      }
+      @-webkit-keyframes mymove /* Safari and Chrome */
+      {
+      from {top:0px;}
+      to {top:200px;}
       }
     </style>
     <link rel="stylesheet" href="css/reveal.css">
@@ -174,8 +200,14 @@
 
     <div id="moonshot" class="page">
       <ul id="scene">
-        <li class="layer" data-depth="0.5">
-          <div class="horsie"></div>
+        <li class="layer" data-depth="0.7">
+          <div class="entity dude" style="zoom:0.7" data-velocity-x='1'></div>
+        </li>
+        <li class="layer" data-depth="0.6">
+          <div class="entity horsie" style="zoom:0.6" data-velocity-x='1'></div>
+        </li>
+        <li class="layer" data-depth="1">
+          <div class="grass"></div>
         </li>
       </ul>
       <div class="reveal">
