@@ -7,7 +7,7 @@
   "window": {
     // For production, use kiosk mode.
     //"kiosk": true,
-    "fullscreen": true,
+    "fullscreen": false,
     "frame": false,
     //"icon": "link.png",
     //"toolbar": true,

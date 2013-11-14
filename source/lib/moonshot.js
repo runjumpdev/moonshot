@@ -16,12 +16,20 @@
     fs.readdirSync('./games/')
       .filter(function(file) { return fs.statSync('./games/'+file).isDirectory() === true })
       .forEach(function(gameSlug) {
-        var game = JSON.parse(
-          fs.readFileSync('./games/'+gameSlug+'/lexitron.json', 'utf8')
-        );
-        game.slug = gameSlug;
-        games[game.slug] = game;
-      });
+    if (fs.existsSync('./games/'+gameSlug+'/lexitron.json')) {
+     var game = JSON.parse(
+       fs.readFileSync('./games/'+gameSlug+'/lexitron.json', 'utf8')
+     );
+     game.slug = gameSlug;
+     if(game.exec[0] !== '/') {
+      game.exec = process.cwd() + '/' + game.exec;
+     }
+     if(game.cwd[0] !== '/') {
+      game.exec = process.cwd() + '/' + game.exec;
+     }
+     games[game.slug] = game;
+    }
+    });
     var templateData = {
       games: games
     };
@@ -54,7 +62,7 @@
         ,height: window.innerHeight
         ,loop: true
         ,keyboard: false
-        ,transition: 'linear'
+        ,transition: 'cube'
         ,autoSlide: 0
       });
       var scene = window.document.getElementById('scene');
@@ -70,7 +78,6 @@
       });
       this.setupInputs();
       this._setFont();
-      this.setAttractMode(true);
     }
     ,setAttractMode: function(enable) {
       var self = this;
@@ -85,11 +92,9 @@
         $('[class*="autoslide"]').each(function(i, slide) {
           var delay = enable ? slide.className.match(/autoslide-(\d+)/)[1] : 0;
           slide.setAttribute('data-autoslide', delay);
-          console.log('setting to '+delay);
         });
         this._attractMode = !this._attractMode ? 1 : 0;
         this._gallery.configure({ autoSlide: this._attractMode });
-        console.log('set attract mode to '+this._attractMode);
       }
     }
     ,setupInputs: function() {
@@ -135,14 +140,13 @@
 
     ,startGame: _.throttle(function(idx) {
       var gameObj = $('#moonshot .game')[idx];
-      var gameSlug = $(gameObj).data('name');
+      var gameSlug = $(gameObj).data('slug');
       var exec = this.games[gameSlug].exec || ""
-        , args = this.games[gameSlug].args || "";
-
-      if(this.games[gameSlug].cwd) process.chdir(cwd);
+        , args = this.games[gameSlug].args || ""
+        , options = this.games[gameSlug].cwd ? {cwd: this.games[gameSlug].cwd} : {};
 
       this._input.teardown();
-      this._cp.exec(exec+" "+args, _.bind(function(error, stdout, stderr) {
+      var gameProc = this._cp.exec(exec+" "+args, options, _.bind(function(error, stdout, stderr) {
         if (error) {
           console.log(error.stack);
           console.log('Error code: '+error.code);
@@ -152,6 +156,9 @@
         console.log('Child Process STDERR: '+stderr);
         this.setupInputs();
       }, this));
+     gameProc.on('exit', function (code) {
+       console.log('Child process exited with exit code '+code);
+     });
     }, 5000, {trailing: false})
 
     ,_nextFont: function() {

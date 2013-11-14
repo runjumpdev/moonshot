@@ -1,0 +1,35 @@
+{
+	"name" : "Wonder Runners",
+	"description": "",
+
+	"byline": "OnlySlightly",
+	"website": "",
+	"twitter": "",
+	"facebook": "",
+
+	"images": ["wonderrunners.png"],
+	"videos": [],
+	"players_min": 2,
+	"players_max": 2,
+	"controls": [
+		{
+			"player": 1,
+			"left": "Walk left",
+			"right": "Walk right",
+			"button1": "Quack",
+			"button2": "Jump"
+		},
+		{
+			"player": 2,
+			"left": "Walk left",
+			"right": "Walk right",
+			"button1": "Quack",
+			"button2": "Jump"
+		}
+	],
+
+	"exec": "games/wonder_runners/wonderrunners.exe",
+	"args": "",
+	"cwd": "games/wonder_runners/"
+
+}

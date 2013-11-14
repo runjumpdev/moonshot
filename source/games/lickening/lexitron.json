@@ -1,15 +1,15 @@
 {
-	"name" : "Fauna Fight",
-	"description": "Can you quack?",
+	"name" : "The Lickening",
+	"description": "",
 
-	"byline": "Ducks",
-	"website": "runjumpdev.org",
-	"twitter": "runjumpdev",
-	"facebook": "RunJumpDev",
+	"byline": "OnlySlightly",
+	"website": "",
+	"twitter": "",
+	"facebook": "",
 
-	"images": ["fauna_fight.png"],
+	"images": ["thelickening.png"],
 	"videos": [],
-	"players_min": 1,
+	"players_min": 2,
 	"players_max": 2,
 	"controls": [
 		{
@@ -28,7 +28,8 @@
 		}
 	],
 
-	"exec": "open",
-	"args": "/Applications/TextEdit.app",
-	"cwd": "/Users/Shared"
+	"exec": "games/lickening/lickening.exe",
+	"args": "",
+	"cwd": "games/lickening/"
+
 }

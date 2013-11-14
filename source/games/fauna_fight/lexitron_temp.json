@@ -1,0 +1,34 @@
+{
+	"name" : "Fauna Fight",
+	"description": "Can you quack?",
+
+	"byline": "Ducks",
+	"website": "runjumpdev.org",
+	"twitter": "runjumpdev",
+	"facebook": "RunJumpDev",
+
+	"images": ["fauna_fight.png"],
+	"videos": [],
+	"players_min": 1,
+	"players_max": 2,
+	"controls": [
+		{
+			"player": 1,
+			"left": "Walk left",
+			"right": "Walk right",
+			"button1": "Quack",
+			"button2": "Jump"
+		},
+		{
+			"player": 2,
+			"left": "Walk left",
+			"right": "Walk right",
+			"button1": "Quack",
+			"button2": "Jump"
+		}
+	],
+
+	"exec": "/usr/bin/open",
+	"args": "/Applications/TextEdit.app",
+	"cwd": "/Users/Shared"
+}
