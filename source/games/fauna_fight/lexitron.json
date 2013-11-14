@@ -28,7 +28,7 @@
 		}
 	],
 
-	"exec": "open",
+	"exec": "/usr/bin/open",
 	"args": "/Applications/TextEdit.app",
 	"cwd": "/Users/Shared"
 }
