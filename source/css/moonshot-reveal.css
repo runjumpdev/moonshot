@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+
+/*********************************************
+ * CUBE TRANSITION
+ *********************************************/
+
+.reveal.cube .slides section {
+	padding: 30px;
+	height: 1440px;
+	height: 810px;
+
+}
+/*
+	.reveal.cube .slides section:not(.stack):after {
+		content: '';
+		position: absolute;
+		display: block;
+		width: 90%;
+		height: 30px;
+		left: 5%;
+		bottom: 0;
+		background: none;
+		z-index: 1;
+
+		border-radius: 4px;
+		box-shadow: 0px 95px 25px rgba(0,0,0,0.2);
+
+		-webkit-transform: translateZ(-90px) rotateX( 65deg );
+		   -moz-transform: translateZ(-90px) rotateX( 65deg );
+		    -ms-transform: translateZ(-90px) rotateX( 65deg );
+		     -o-transform: translateZ(-90px) rotateX( 65deg );
+		        transform: translateZ(-90px) rotateX( 65deg );
+	}
+
+*/
