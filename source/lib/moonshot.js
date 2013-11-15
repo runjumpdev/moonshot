@@ -105,13 +105,15 @@
       });
       window.requestAnimationFrame(window.moonshot.__proto__.animate);
     }
-    ,setAttractMode: function(enable) {
+    ,setAttractMode: function(enable, permanent) {
       var self = this;
       if(!enable) {
         window.clearTimeout(this._attractTimer);
-        this._attractTimer = window.setTimeout(
-          function() {self.setAttractMode(true);}
-          , 30000);
+        if(permanent !== true) {
+          this._attractTimer = window.setTimeout(
+            function() {self.setAttractMode(true);}
+            , 30000);
+        }
       }
       // if we want to enable or
       if (enable || this._attractMode) {
@@ -132,7 +134,7 @@
           case 'button1':
           case 'action':
             var slug = $(this._gallery.getCurrentSlide()).parent().data('slug');
-            if(this.game.hasOwnProperty(slug)) {
+            if(this.games.hasOwnProperty(slug)) {
               this.startGame(slug);
             }
             break;
@@ -173,7 +175,8 @@
         , options = this.games[gameSlug].cwd ? {cwd: this.games[gameSlug].cwd} : {};
 
       this._input.teardown();
-      var gameProc = this._cp.exec(exec+" "+args, options, _.bind(function(error, stdout, stderr) {
+      this.setAttractMode(false, true);
+      this._cp.exec(exec+" "+args, options, _.bind(function(error, stdout, stderr) {
         if (error) {
           console.log(error.stack);
           console.log('Error code: '+error.code);
@@ -182,10 +185,8 @@
         console.log('Child Process STDOUT: '+stdout);
         console.log('Child Process STDERR: '+stderr);
         this.setupInputs();
+        this.setAttractMode(false);
       }, this));
-     gameProc.on('exit', function (code) {
-       console.log('Child process exited with exit code '+code);
-     });
     }, 5000, {trailing: false})
 
     ,_nextFont: function() {

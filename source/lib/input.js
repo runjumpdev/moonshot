@@ -50,10 +50,10 @@
       mapping[Input.keys['DOWN_ARROW']]  = 'down';
 
       _.extend(mapping, {
-        AXIS_LEFT:            'left'
-        ,AXIS_UP:             'up'
-        ,AXIS_RIGHT:          'right'
-        ,AXIS_DOWN:           'down'
+        DPAD_LEFT:            'left'
+        ,DPAD_UP:             'up'
+        ,DPAD_RIGHT:          'right'
+        ,DPAD_DOWN:           'down'
         ,FACE_1:              'button1'
         ,FACE_2:              'button2'
         ,FACE_3:              'button3'
@@ -82,18 +82,18 @@
         this.released( mapping[e.control], e.gamepad.index );
       }, this));
 
-      gamepad.bind(Gamepad.Event.AXIS_CHANGED, _.bind(function(e) {
-        // TODO: Use a state machine for button/axis transitions.
-        if (e.axis === 'LEFT_STICK_X') {
-          e.value < 0 ? this.pressed(mapping.AXIS_LEFT, e.gamepad.index)   : this.released(mapping.AXIS_LEFT, e.gamepad.index);
-          e.value > 0 ? this.pressed(mapping.AXIS_RIGHT, e.gamepad.index)  : this.released(mapping.AXIS_RIGHT, e.gamepad.index);
-        }
+      // gamepad.bind(Gamepad.Event.AXIS_CHANGED, _.bind(function(e) {
+      //   // TODO: Use a state machine for button/axis transitions.
+      //   if (e.axis === 'LEFT_STICK_X') {
+      //     e.value < 0 ? this.pressed(mapping.AXIS_LEFT, e.gamepad.index)   : this.released(mapping.AXIS_LEFT, e.gamepad.index);
+      //     e.value > 0 ? this.pressed(mapping.AXIS_RIGHT, e.gamepad.index)  : this.released(mapping.AXIS_RIGHT, e.gamepad.index);
+      //   }
 
-        if (e.axis === 'LEFT_STICK_Y') {
-          e.value < 0 ? this.pressed(mapping.AXIS_UP, e.gamepad.index)   : this.released(mapping.AXIS_UP, e.gamepad.index);
-          e.value > 0 ? this.pressed(mapping.AXIS_DOWN, e.gamepad.index) : this.released(mapping.AXIS_DOWN, e.gamepad.index);
-        }
-      }, this));
+      //   if (e.axis === 'LEFT_STICK_Y') {
+      //     e.value < 0 ? this.pressed(mapping.AXIS_UP, e.gamepad.index)   : this.released(mapping.AXIS_UP, e.gamepad.index);
+      //     e.value > 0 ? this.pressed(mapping.AXIS_DOWN, e.gamepad.index) : this.released(mapping.AXIS_DOWN, e.gamepad.index);
+      //   }
+      // }, this));
 
       this.mapping = mapping;
       this.gamepad = gamepad;
