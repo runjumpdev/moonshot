@@ -40,6 +40,7 @@
     this.games = games;
   };
 
+
   Moonshot.prototype = {
     _fonts: [
       'bitterregular'
@@ -52,7 +53,8 @@
 
     ,_fontIndex: 0
 
-    ,launch: function(input, Reveal, callback) {
+    ,launch: function(input, Reveal, Parallax, callback) {
+      var self = this;
       this._cp = require('child_process');
       this._finish = callback;
       this._input = input;
@@ -66,16 +68,53 @@
         ,transition: 'linear'
         ,autoSlide: 0
       });
+      this._entities = [];
+      $.each($('.entity'), function(i, el) {
+        var $el = $(el);
+        $el.css('left', 0);
+        self._entities.push({
+          el: el
+          ,vx: $el.data('velocity-x') || 0
+          ,vy: $el.data('velocity-y') || 0
+          ,animate: function() {
+            var left = $el.css('left')
+              ,top = $el.css('top');
+            $el.css('left', parseFloat(left.substr(0, left.length-2))+this.vx+'px');
+            $el.css('top', parseFloat(top.substr(0, top.length-2))-this.vy+'px');
+            //  console.log('set left to '+left+'-->'+$el.css('left'));
+          }
+        });
+      });
+      var scene = window.document.getElementById('scene');
+      this._parallax = new Parallax(scene);
+      // this is mainly for debugging
+      this._parallax.onMouseMove = null;
+
+      var slideCount = $('.slides')[0].childElementCount;
+      this._gallery.addEventListener('slidechanged', function(event) {
+        self._parallax.ix = event.indexh/slideCount;
+        // removing this while we work on just reacting to dx
+        // self._parallax.iy = event.indexv;
+      });
       this.setupInputs();
       this._setFont();
+      this.animate.call(this);
     }
-    ,setAttractMode: function(enable) {
+    ,animate: function() {
+      window.moonshot._entities.forEach(function(entity) {
+        entity.animate();
+      });
+      window.requestAnimationFrame(window.moonshot.__proto__.animate);
+    }
+    ,setAttractMode: function(enable, permanent) {
       var self = this;
       if(!enable) {
-        win.window.clearTimeout(this._attractTimer);
-        this._attractTimer = win.window.setTimeout(
-          function() {self.setAttractMode(true);}
-          , 30000);
+        window.clearTimeout(this._attractTimer);
+        if(permanent !== true) {
+          this._attractTimer = window.setTimeout(
+            function() {self.setAttractMode(true);}
+            , 30000);
+        }
       }
       // if we want to enable or
       if (enable || this._attractMode) {
@@ -95,7 +134,10 @@
         switch(button) {
           case 'button1':
           case 'action':
-            this.startGame(this._gallery.getIndices().h);
+            var slug = $(this._gallery.getCurrentSlide()).parent().data('slug');
+            if(this.games.hasOwnProperty(slug)) {
+              this.startGame(slug);
+            }
             break;
           case 'left':
             this._gallery.left();
@@ -128,16 +170,14 @@
       }, this));
     }
 
-    ,startGame: _.throttle(function(idx) {
-      var gameObj = $('#moonshot .game')[idx];
-      var gameSlug = $(gameObj).data('slug');
+    ,startGame: _.throttle(function(gameSlug) {
       var exec = this.games[gameSlug].exec || ""
         , args = this.games[gameSlug].args || ""
         , options = this.games[gameSlug].cwd ? {cwd: this.games[gameSlug].cwd} : {};
 
       this._input.teardown();
-	  console.log(exec+" "+args);
-      var gameProc = this._cp.exec(exec+" "+args, options, _.bind(function(error, stdout, stderr) {
+      this.setAttractMode(false, true);
+      this._cp.exec(exec+" "+args, options, _.bind(function(error, stdout, stderr) {
         if (error) {
           console.log(error.stack);
           console.log('Error code: '+error.code);
@@ -146,10 +186,8 @@
         console.log('Child Process STDOUT: '+stdout);
         console.log('Child Process STDERR: '+stderr);
         this.setupInputs();
+        this.setAttractMode(false);
       }, this));
-     gameProc.on('exit', function (code) {
-       console.log('Child process exited with exit code '+code);
-     });
     }, 5000, {trailing: false})
 
     ,_nextFont: function() {
