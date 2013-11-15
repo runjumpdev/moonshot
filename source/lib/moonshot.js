@@ -131,8 +131,10 @@
         switch(button) {
           case 'button1':
           case 'action':
-          console.log(this._gallery.getCurrentSlide());
-            this.startGame(this._gallery.getIndices().h);
+            var slug = $(this._gallery.getCurrentSlide()).parent().data('slug');
+            if(this.game.hasOwnProperty(slug)) {
+              this.startGame(slug);
+            }
             break;
           case 'left':
             this._gallery.left();
@@ -165,9 +167,7 @@
       }, this));
     }
 
-    ,startGame: _.throttle(function(idx) {
-      var gameObj = $('#moonshot .game')[idx];
-      var gameSlug = $(gameObj).data('slug');
+    ,startGame: _.throttle(function(gameSlug) {
       var exec = this.games[gameSlug].exec || ""
         , args = this.games[gameSlug].args || ""
         , options = this.games[gameSlug].cwd ? {cwd: this.games[gameSlug].cwd} : {};
