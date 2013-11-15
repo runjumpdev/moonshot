@@ -8,8 +8,18 @@
 .reveal.cube .slides section {
 	padding: 30px;
 	height: 1080px;
-
+    background: rgba(0, 0, 0, 0.8);
+	border-radius: 50px;
 }
+
+
+.reveal img,
+.reveal video,
+.reveal iframe {
+	max-width: 100%;
+	max-height: 100%;
+}
+
 /*
 	.reveal.cube .slides section:not(.stack):after {
 		content: '';

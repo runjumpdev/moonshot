@@ -12,8 +12,8 @@
     //"icon": "link.png",
     //"toolbar": true,
     "toolbar": false,
-    "width": 1200,
-    "height": 800,
+    "width": 1920,
+    "height": 1080,
     "position": "mouse",
     "min_width": 400,
     "min_height": 200

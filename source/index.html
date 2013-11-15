@@ -68,6 +68,48 @@
         color: #DDD;
         height: 100%;
       }
+
+      #scene {
+        height: 100%;
+        width: 100%;
+        background: #444;
+        position: absolute;
+        margin: 0;
+      }
+
+      #scene li div {
+        position: relative;
+      }
+
+      .horsie {
+        background: url(images/horsie.svg);
+        width: 80px;
+        height: 60px;
+        top: 1273px;
+        background-size: cover;
+      }
+
+      .dude {
+        background: url(images/dude.svg);
+        width: 60px;
+        height: 80px;
+        top: 1061px;
+        background-size: cover;
+      }
+
+      .grass {
+        background: url(images/grass.svg);
+        width: 200%;
+        height: 50px;
+        top: 800px;
+        background-size: 50px;
+        background-repeat: repeat-x;
+      }
+      @-webkit-keyframes mymove /* Safari and Chrome */
+      {
+      from {top:0px;}
+      to {top:200px;}
+      }
     </style>
     <link rel="stylesheet" href="css/reveal.css">
     <link rel="stylesheet" href="css/moonshot-reveal.css">
@@ -157,6 +199,17 @@
     </div> <!-- rom-check page end -->
 
     <div id="moonshot" class="page">
+      <ul id="scene">
+        <li class="layer" data-depth="0.7">
+          <div class="entity dude" style="zoom:0.7" data-velocity-x='1'></div>
+        </li>
+        <li class="layer" data-depth="0.6">
+          <div class="entity horsie" style="zoom:0.6" data-velocity-x='1'></div>
+        </li>
+        <li class="layer" data-depth="1">
+          <div class="grass"></div>
+        </li>
+      </ul>
       <div class="reveal">
         <div class="slides">
           <section>
@@ -212,6 +265,7 @@
 
     <script src="lib/vendor/jquery-2.0.3.min.js"></script>
     <script src="lib/vendor/underscore-min.js"></script>
+    <script src="lib/vendor/parallax.js"></script>
     <script src="lib/vendor/reveal.js"></script>
     <script>
       $('#moonshot').hide();
@@ -230,7 +284,7 @@
       rom_check.launch(input, function() {
         $('#rom-check').hide();
         $('#moonshot').fadeIn();
-        moonshot.launch(input, Reveal);
+        moonshot.launch(input, Reveal, Parallax);
       });
     </script>
   </body>
