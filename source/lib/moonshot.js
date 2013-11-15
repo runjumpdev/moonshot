@@ -40,6 +40,7 @@
     this.games = games;
   };
 
+
   Moonshot.prototype = {
     _fonts: [
       'bitterregular'
@@ -53,6 +54,7 @@
     ,_fontIndex: 0
 
     ,launch: function(input, Reveal, Parallax, callback) {
+      var self = this;
       this._cp = require('child_process');
       this._finish = callback;
       this._input = input;
@@ -65,13 +67,29 @@
         ,transition: 'cube'
         ,autoSlide: 0
       });
+      this._entities = [];
+      $.each($('.entity'), function(i, el) {
+        var $el = $(el);
+        $el.css('left', 0);
+        self._entities.push({
+          el: el
+          ,vx: $el.data('velocity-x') || 0
+          ,vy: $el.data('velocity-y') || 0
+          ,animate: function() {
+            var left = $el.css('left')
+              ,top = $el.css('top');
+            $el.css('left', parseFloat(left.substr(0, left.length-2))+this.vx+'px');
+            $el.css('top', parseFloat(top.substr(0, top.length-2))-this.vy+'px');
+            //  console.log('set left to '+left+'-->'+$el.css('left'));
+          }
+        });
+      });
       var scene = window.document.getElementById('scene');
       this._parallax = new Parallax(scene);
       // this is mainly for debugging
       this._parallax.onMouseMove = null;
 
-      var slideCount = $('.slides')[0].childElementCount
-        ,self = this;
+      var slideCount = $('.slides')[0].childElementCount;
       this._gallery.addEventListener('slidechanged', function(event) {
         self._parallax.ix = event.indexh/slideCount;
         // removing this while we work on just reacting to dx
@@ -79,6 +97,13 @@
       });
       this.setupInputs();
       this._setFont();
+      this.animate.call(this);
+    }
+    ,animate: function() {
+      window.moonshot._entities.forEach(function(entity) {
+        entity.animate();
+      });
+      window.requestAnimationFrame(window.moonshot.__proto__.animate);
     }
     ,setAttractMode: function(enable) {
       var self = this;
@@ -106,6 +131,7 @@
         switch(button) {
           case 'button1':
           case 'action':
+          console.log(this._gallery.getCurrentSlide());
             this.startGame(this._gallery.getIndices().h);
             break;
           case 'left':
