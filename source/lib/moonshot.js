@@ -25,7 +25,7 @@
       game.exec = process.cwd() + '/' + game.exec;
      }
      if(game.cwd[0] !== '/') {
-      game.exec = process.cwd() + '/' + game.exec;
+      game.cwd = process.cwd() + '/' + game.cwd;
      }
      games[game.slug] = game;
     }
@@ -63,7 +63,7 @@
         ,margin: 0.25
         ,loop: true
         ,keyboard: false
-        ,transition: 'cube'
+        ,transition: 'linear'
         ,autoSlide: 0
       });
       this.setupInputs();
@@ -136,6 +136,7 @@
         , options = this.games[gameSlug].cwd ? {cwd: this.games[gameSlug].cwd} : {};
 
       this._input.teardown();
+	  console.log(exec+" "+args);
       var gameProc = this._cp.exec(exec+" "+args, options, _.bind(function(error, stdout, stderr) {
         if (error) {
           console.log(error.stack);
