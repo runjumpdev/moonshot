@@ -5,114 +5,9 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="fonts/stylesheet.css">
-    <style>
-      h2 {
-        font-size: 40px;
-      }
-
-      html, body, div {
-        margin: 0;
-        padding: 0;
-        cursor: none;
-      }
-
-      #rom-check {
-        padding: 20px;
-        font-family: vigaregular;
-        font-size: 150%;
-      }
-
-      #rom-check h1 {
-        margin: 0;
-      }
-
-      #rom-check img {
-        position: relative;
-        top: 3px;
-      }
-
-      #rom-check .input-status {
-        text-align: center;
-        float: left;
-        max-width: 150px;
-        min-width: 100px;
-        margin-left: 20px;
-        margin-right: 20px;
-      }
-
-      #rom-check .input-status ul {
-        margin-left: 0;
-        padding-left: 0;
-      }
-
-      #rom-check .input-status li {
-        list-style-type: none;
-        /*text-align: center;*/
-        border-width: 1px;
-        border: 1px solid white;
-      }
-
-      #rom-check .input-status .pressed {
-        background: red;
-        color: white;
-        font-weight: bold;
-        border: 1px solid black;
-      }
-
-      #rom-check .input {
-        opacity: 0.5;
-      }
-
-      #moonshot {
-        background: #222;
-        color: #DDD;
-        height: 100%;
-      }
-
-      #scene {
-        height: 100%;
-        width: 100%;
-        background: #444;
-        position: absolute;
-        margin: 0;
-      }
-
-      #scene li div {
-        position: relative;
-      }
-
-      .horsie {
-        background: url(images/horsie.svg);
-        width: 80px;
-        height: 60px;
-        top: 1273px;
-        background-size: cover;
-      }
-
-      .dude {
-        background: url(images/dude.svg);
-        width: 60px;
-        height: 80px;
-        top: 1061px;
-        background-size: cover;
-      }
-
-      .grass {
-        background: url(images/grass.svg);
-        width: 200%;
-        height: 50px;
-        top: 800px;
-        background-size: 50px;
-        background-repeat: repeat-x;
-      }
-      @-webkit-keyframes mymove /* Safari and Chrome */
-      {
-      from {top:0px;}
-      to {top:200px;}
-      }
-    </style>
     <link rel="stylesheet" href="css/reveal.css">
     <link rel="stylesheet" href="css/moonshot-reveal.css">
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <div id="rom-check" class="page">
@@ -201,10 +96,10 @@
     <div id="moonshot" class="page">
       <ul id="scene">
         <li class="layer" data-depth="0.7">
-          <div class="entity dude" style="zoom:0.7" data-velocity-x='1'></div>
+          <div class="entity dude runRight dudeRunAnim" style="zoom:0.7"></div>
         </li>
         <li class="layer" data-depth="0.6">
-          <div class="entity horsie" style="zoom:0.6" data-velocity-x='1'></div>
+          <div class="entity horsie" style="zoom:0.6"></div>
         </li>
         <li class="layer" data-depth="1">
           <div class="grass"></div>

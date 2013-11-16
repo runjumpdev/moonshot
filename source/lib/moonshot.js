@@ -63,9 +63,9 @@
         width: window.innerWidth
         ,height: window.innerHeight
         ,margin: 0.25
-        ,loop: true
+        ,loop: false
         ,keyboard: false
-        ,transition: 'linear'
+        ,transition: 'cube'
         ,autoSlide: 0
       });
       this._entities = [];
@@ -77,10 +77,10 @@
           ,vx: $el.data('velocity-x') || 0
           ,vy: $el.data('velocity-y') || 0
           ,animate: function() {
-            var left = $el.css('left')
-              ,top = $el.css('top');
-            $el.css('left', parseFloat(left.substr(0, left.length-2))+this.vx+'px');
-            $el.css('top', parseFloat(top.substr(0, top.length-2))-this.vy+'px');
+            //var left = $el.css('left')
+            //  ,top = $el.css('top');
+            //$el.css('left', parseFloat(left.substr(0, left.length-2))+this.vx+'px');
+            //$el.css('top', parseFloat(top.substr(0, top.length-2))-this.vy+'px');
             //  console.log('set left to '+left+'-->'+$el.css('left'));
           }
         });
