@@ -105,7 +105,7 @@
         width: window.innerWidth
         ,height: window.innerHeight
         ,margin: 0.25
-        ,loop: false
+        ,loop: true
         ,keyboard: false
         ,transition: 'cube'
         ,autoSlide: 0

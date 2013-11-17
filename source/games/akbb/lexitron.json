@@ -3,9 +3,11 @@
 	"description": "",
 
 	"byline": "Super Soul",
-	"website": "SuperSoul.co",
-	"twitter": "twitter.com/SuperSoulStudio",
-	"facebook": "facebook.com/SuperSoulStudio",
+
+	"devabout": "Super Soul is an award winning digital arts studio that creates unique and compelling interactive experiences. Super Soul's diverse portfolio includes PC/console/mobile video games, educational/training games, marketing materials, and art installations. The company uses a wide variety of technologies to create custom experiences for clients including Unity, Flash, HTML5, augmented reality, motion tracking devices, and virtual reality headsets.",
+	"devwebsite": "SuperSoul.co",
+	"devtwitter": "SuperSoulStudio",
+	"devfacebook": "SuperSoulStudio",
 
 	"images": ["akbb.png"],
 	"videos": [],
