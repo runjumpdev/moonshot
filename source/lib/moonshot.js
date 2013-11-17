@@ -129,24 +129,36 @@
             var myOffset = this.$el.offset();
             switch(this.entity) {
               case 'dude':
+              case 'horsie':
               var self = this;
               $.each($('.obstacle'), function() {
-                var obstacleOffset = $(this).offset()
-                  ,distToObstacle = obstacleOffset.left - myOffset.left;
-                if( distToObstacle < 200 && distToObstacle > 0
+                var $obstacle = $(this) 
+                  ,obstacleOffset = $obstacle.offset()
+                  ,distToObstacle = obstacleOffset.left - myOffset.left - self.$el.width()/2 - $obstacle.width()/2;
+                if( distToObstacle < self.$el.width()*2 && distToObstacle > 0
                   && self.state != 'jumping') {
                   self.state = 'jumping';
+                  var jumpHeight = $obstacle.height() + self.$el.height() * 0.75;
+                  var airTime = ($obstacle.width() + distToObstacle * 1.75)/.2;
+                  self.$el.css('background-size', '0px');
+                  self.$el.children('#'+self.entity+'Jump').toggle();
                   self.$el.animate(
-                    { top: '-=260px' }
+                    { top: '-='+jumpHeight+'px' }
                     ,{
                       easing: 'easeOutCubic'
-                      ,duration: 650
+                      ,duration: airTime/2
                       ,complete: function() {
                         self.$el.animate(
-                          { top: '+=260px'  }
+                          { top: '+='+jumpHeight+'px'  }
                           ,{
                             easing: 'easeInCubic'
-                            ,duration: 650
+                            ,duration: airTime/2
+                            ,progress: function(animation, progress, remainingMs) {
+                              if(remainingMs < 450 && self.$el.css('background-size') == '0px') {
+                                self.$el.css('background-size', 'cover');
+                                self.$el.children('#'+self.entity+'Jump').toggle();
+                              }
+                            }
                             , complete: function() {
                               self.state = 'running';
                             }

@@ -102,9 +102,9 @@ html, body, div {
 .bush1 {
   height: 150px;
   width: 120px;
-  top: 410px;
+  top: 680px;
   background: red;
-  -webkit-animation: bush1Move 12.6s linear infinite;
+  -webkit-animation: bush1Move 9.45s linear infinite;
 }
 
 @-webkit-keyframes bush1Move {
@@ -121,24 +121,24 @@ html, body, div {
 
 @-webkit-keyframes dudeRunMove {
   0% {
-    margin-left: 150px;
+    left: 200px;
     -webkit-animation-timing-function: ease-out;
   }
-  80% { margin-left: -45px; }
+  80% { left: -50px; }
   84% {
-    margin-left: -45px;
+    left: -50px;
     -webkit-animation-timing-function: ease-out;
   }
-  100% { margin-left: 150px;}
+  100% { left: 200px;}
 }
 
 @-webkit-keyframes dudeRunAnimSlow {
-  from { background-position: 0px; }
-  to { background-position: -840px; }
+  from { background-position: 0px 0px; }
+  to { background-position: -840px 0px; }
 }
 @-webkit-keyframes dudeRunAnimFast {
-  from { background-position: 0px; }
-  to { background-position: -840px; }
+  from { background-position: 0px 0px; }
+  to { background-position: -840px 0px; }
 }
 
 .floorAnim {
