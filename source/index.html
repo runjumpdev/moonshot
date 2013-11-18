@@ -96,12 +96,19 @@
     <div id="moonshot" class="page">
       <ul id="scene">
         <li class="layer" data-depth="0.7">
+          <div class="entity dude" data-entity="dude">
+            <img id="dudeJump" src="images/dudeJump.svg" height="140" width="160" hidden></img>
+          </div>
         </li>
-        <li class="layer" data-depth="0.6">
-          <div class="entity horsie" style="zoom:0.6"></div>
+        <li class="layer" data-depth="0.7">
+          <div class="entity bush1 obstacle"></div>
+        </li>
+        <li class="layer" data-depth="0.7">
+          <div class="entity horsie" data-entity="horsie">
+            <img id="horsieJump" src="images/horsie.svg" height="140" width="160" hidden></img>
+          </div>
         </li>
         <li class="layer" data-depth="1">
-          <div class="entity dude runRight dudeRunAnim" style="zoom:0.7"></div>
           <div class="grass floorAnim"></div>
         </li>
       </ul>
@@ -127,28 +134,47 @@
                   <img src='games/<%- game.slug+"/"+game.images[0] %>' />
                 </section>
                 <section class='autoslide-5000'>
+				<div style="padding: 20x; float: left; width: 850px;">
+                  <% if (game.images[1]) { %>
+   				  <img src='games/<%- game.slug+"/"+game.images[1] %>' width="768" height="432" style="padding: 20px;" />				  
+                  <% } else { %>
+   				  <img src='games/<%- game.slug+"/"+game.images[0] %>' width="768" height="432" style="padding: 20px;" />				  
+                  <% } %>
+                  <% if (game.images[2]) { %>
+   				  <img src='games/<%- game.slug+"/"+game.images[2] %>' width="768" height="432" style="padding: 20px;" />
+                  <% } %>				  
+				 </div>
                   <h1>
                     <%= game.name %>
                   </h1>
                   <h2>
                     by <span><%= game.byline %></span>
                   </h2>
-                  <% if (game.website) { %>
-                    <h3 class="website">
-                      <span><%= game.website %></span>
-                    </h3>
+                  <h3 style="line-height: 1.3"><%= game.description %></h3>
+				  <h3 style="font-size: 2em; padding-top: 20px;"><%= game.players %></h3>
+				  <h3 style="font-size: 2em; padding-top: 10px;">Platforms: <%= game.platforms %></h3>
+				  <h3 style="font-size: 2em; padding-top: 10px; word-spacing: 50px;">
+                  <% if (game.gamewebsite) { %>
+                      <span class="website"><%= game.gamewebsite %></span>
                   <% } %>
-                  <% if (game.twitter) { %>
-                    <h3 class="twitter">
-                      @<span><%= game.twitter %></span>
-                    </h3>
+                  <% if (game.gametwitter) { %>
+                      <span class="twitter">@<%= game.gametwitter %></span>
                   <% } %>
-                  <% if (game.facebook) { %>
-                    <h3 class="facebook">
-                      facebook.com/<span><%= game.facebook %></span>
-                    </h3>
+                  <% if (game.gamefacebook) { %>
+                      <span class="facebook">facebook.com/<%= game.gamefacebook %></span>
                   <% } %>
-                  <p><%= game.description %></p>
+
+                  <h3 style="line-height: 1.3; padding-top: 80px;"><%= game.devabout %></h3>
+				  <h3 style="font-size: 2em; padding-top: 10px; word-spacing: 50px;">
+                  <% if (game.devwebsite) { %>
+                      <span class="website"><%= game.devwebsite %></span>
+                  <% } %>
+                  <% if (game.devtwitter) { %>
+                      <span class="twitter">@<%= game.devtwitter %></span>
+                  <% } %>
+                  <% if (game.devfacebook) { %>
+                      <span class="facebook">facebook.com/<%= game.devfacebook %></span>
+                  <% } %>
                 </section>
               </section>
             <% } %>
