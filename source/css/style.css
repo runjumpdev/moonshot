@@ -63,7 +63,9 @@ html, body, div {
 #scene {
   height: 100%;
   width: 100%;
-  background: #5FB5E0;
+  background-image: url(../images/skyline.png);
+  image-rendering: -webkit-optimize-contrast;
+  background-size: cover;
   position: absolute;
   margin: 0;
 }
@@ -76,7 +78,7 @@ html, body, div {
   background: url(../images/horsie.svg);
   width: 160px;
   height: 120px;
-  top: 720px;
+  top: 842px;
   margin-left: 1693px;
   background-size: cover;
 }
@@ -85,31 +87,75 @@ html, body, div {
   background: url(../images/dude.svg);
   width: 120px;
   height: 160px;
-  top: 680px;
+  top: 797px;
   background-size: cover;
   position: absolute;
 }
 
 .grass {
   background: url(../images/grass.svg);
-  width: 200%;
+  width: 2520px;
   height: 240px;
-  top: 838px;
+  top: 958px;
   background-size: 120px;
   background-repeat: repeat-x;
 }
 
-.bush1 {
-  height: 150px;
-  width: 120px;
-  top: 680px;
-  background: red;
-  -webkit-animation: bush1Move 9.45s linear infinite;
+.bourbon {
+  background: url(../images/bourbon.svg);
+  top: 172px;
+  width: 70px;
+  height: 70px;
+  float: left;
+  background-size: 350px;
+  background-repeat: repeat-x;
 }
 
-@-webkit-keyframes bush1Move {
+.bourbonAnim1 {
+  -webkit-animation: bourbonAnim1 0.7s steps(7) infinite;
+}
+
+.bourbonAnim2 {
+  -webkit-animation: bourbonAnim2 0.7s steps(7) infinite;
+}
+.bourbonAnim3 {
+  -webkit-animation: bourbonAnim3 0.7s steps(7) infinite;
+}
+
+@-webkit-keyframes bourbonAnim1 {
+  from { background-position: 0px; }
+  to { background-position: -350px; }
+}
+
+@-webkit-keyframes bourbonAnim2 {
+  from { background-position: 200px; }
+  to { background-position: -150px; }
+}
+
+@-webkit-keyframes bourbonAnim3 {
+  from { background-position: 100px; }
+  to { background-position: -250px; }
+}
+
+
+.barrel1 {
+  height: 120px;
+  width: 120px;
+  top: 840px;
+  background: url(../images/barrel.svg);
+  background-size: cover;
+  -webkit-animation: barrel1Move 9.45s linear infinite,
+    barrelRoll 1.8s linear infinite;
+}
+
+@-webkit-keyframes barrel1Move {
   from { margin-left: 2020px; }
   to { margin-left: -500px; }
+}
+
+@-webkit-keyframes barrelRoll {
+  from { -webkit-transform: rotate(0deg); }
+  to { -webkit-transform: rotate(-360deg); }
 }
 
 .dudeRun {
@@ -120,7 +166,7 @@ html, body, div {
 }
 
 @-webkit-keyframes dudeRunMove {
-  0% {
+  from {
     left: 200px;
     -webkit-animation-timing-function: ease-out;
   }
@@ -129,7 +175,7 @@ html, body, div {
     left: -50px;
     -webkit-animation-timing-function: ease-out;
   }
-  100% { left: 200px;}
+  to { left: 200px;}
 }
 
 @-webkit-keyframes dudeRunAnimSlow {
@@ -139,6 +185,35 @@ html, body, div {
 @-webkit-keyframes dudeRunAnimFast {
   from { background-position: 0px 0px; }
   to { background-position: -840px 0px; }
+}
+
+.horsieRun {
+  -webkit-animation: horsieRunAnimSlow 0.7s steps(7) 12,
+    horsieRunMove 10s linear infinite,
+    horsieRunAnimFast 0.2s steps(7) 8;
+  -webkit-animation-delay: 0s, 0s, 8.4s;
+}
+
+@-webkit-keyframes horsieRunMove {
+  from {
+    left: 200px;
+    -webkit-animation-timing-function: ease-out;
+  }
+  80% { left: -50px; }
+  84% {
+    left: -50px;
+    -webkit-animation-timing-function: ease-out;
+  }
+  to { left: 200px;}
+}
+
+@-webkit-keyframes horsieRunAnimSlow {
+  from { background-position: 0px 0px; }
+  to { background-position: -1120px 0px; }
+}
+@-webkit-keyframes horsieRunAnimFast {
+  from { background-position: 0px 0px; }
+  to { background-position: -1120px 0px; }
 }
 
 .floorAnim {

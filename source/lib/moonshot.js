@@ -118,6 +118,13 @@
         setTimeout(runDude, 10000);
       }
       runDude();
+      function runHorsie() {
+        $('.horsie').removeClass('horsieRun').animate({}, 0, function () {
+          $('.horsie').addClass('horsieRun');
+        });
+        setTimeout(runHorsie, 10000);
+      }
+      runHorsie();
 
       this._entities = [];
       $.each($('.entity'), function() {
