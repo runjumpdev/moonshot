@@ -64,10 +64,10 @@
      );
      game.slug = gameSlug;
      if(game.exec[0] !== '/') {
-      game.exec = process.cwd() + '/' + game.exec;
+      game.exec = process.cwd().replace('\\source', '\\bin') + '/' + game.exec;
      }
      if(game.cwd[0] !== '/') {
-      game.cwd = process.cwd() + '/' + game.cwd;
+      game.cwd = process.cwd().replace('\\source', '\\bin') + '/' + game.cwd;
      }
      games[game.slug] = game;
     }
