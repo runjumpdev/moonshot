@@ -1,7 +1,8 @@
 {
 	"name" : "Astronaut Kitty Boom Boom",
 	"platforms" : "Lexitron exclusive",	
-	"description": "",
+    "players" : "2 players",	
+	"description": "Compete against a friend or enemy and see who can launch their kitty into outer space.",
 
 	"byline": "Super Soul",
 
