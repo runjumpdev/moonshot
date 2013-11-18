@@ -1,11 +1,13 @@
 {
 	"name" : "Fearless Night",
-	"description": "",
+	"platforms" : "Windows, Linux",
+
+	"description": "Fearless Night is a 2D fighting game featuring HD sprite animations and high paced gameplay!",
 
 	"byline": "Shobu Games",
 	"website": "ShobuGames.com",
-	"twitter": "",
-	"facebook": "",
+	"twitter": "Shobugames",
+	"facebook": "facebook.com/fearlessnightgame",
 
 	"images": ["fearlessnight.png"],
 	"videos": [],
