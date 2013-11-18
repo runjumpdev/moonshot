@@ -73,6 +73,10 @@ html, body, div {
 #scene li div {
   position: relative;
 }
+.slides section > section > img {
+  width: 100%;
+  height: 100%;
+}
 
 .horsie {
   background: url(../images/horsie.svg);
