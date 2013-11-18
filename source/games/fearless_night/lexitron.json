@@ -9,7 +9,7 @@
 	"twitter": "Shobugames",
 	"facebook": "facebook.com/fearlessnightgame",
 
-	"images": ["fearlessnight.png"],
+	"images": ["fearlessnight.png", "shobu_games_logo.png"],
 	"videos": [],
 	"players_min": 1,
 	"players_max": 2,
