@@ -173,13 +173,15 @@
                 <section class='autoslide-5000'>
 				<div style="padding: 20x; float: left; width: 850px;">
                   <% if (game.images[1]) { %>
-   				  <img src='games/<%- game.slug+"/"+game.images[1] %>' width="768" height="432" style="padding: 20px;" />				  
+   				  <img src='games/<%- game.slug+"/"+game.images[1] %>' width="768" height="432" style="padding: 20px;" />
                   <% } else { %>
    				  <img src='games/<%- game.slug+"/"+game.images[0] %>' width="768" height="432" style="padding: 20px;" />				  
                   <% } %>
                   <% if (game.images[2]) { %>
    				  <img src='games/<%- game.slug+"/"+game.images[2] %>' width="768" height="432" style="padding: 20px;" />
-                  <% } %>				  
+                  <% } else { %>
+   				  <img src='images/blank.png' width="768" height="432" style="padding: 20px;" />				  
+                  <% } %>
 				 </div>
                   <h1>
                     <%= game.name %>
