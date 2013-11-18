@@ -78,7 +78,7 @@ html, body, div {
   background: url(../images/horsie.svg);
   width: 160px;
   height: 120px;
-  top: 842px;
+  top: 722px;
   margin-left: 1693px;
   background-size: cover;
 }
@@ -87,7 +87,7 @@ html, body, div {
   background: url(../images/dude.svg);
   width: 120px;
   height: 160px;
-  top: 797px;
+  top: 677px;
   background-size: cover;
   position: absolute;
 }
@@ -96,7 +96,7 @@ html, body, div {
   background: url(../images/grass.svg);
   width: 2520px;
   height: 240px;
-  top: 958px;
+  top: 838px;
   background-size: 120px;
   background-repeat: repeat-x;
 }
@@ -141,7 +141,7 @@ html, body, div {
 .barrel1 {
   height: 120px;
   width: 120px;
-  top: 840px;
+  top: 720px;
   background: url(../images/barrel.svg);
   background-size: cover;
   -webkit-animation: barrel1Move 9.45s linear infinite,
