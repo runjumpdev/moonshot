@@ -139,7 +139,7 @@
               case 'horsie':
               var self = this;
               $.each($('.obstacle'), function() {
-                var $obstacle = $(this) 
+                var $obstacle = $(this)
                   ,obstacleOffset = $obstacle.offset()
                   ,distToObstacle = obstacleOffset.left - myOffset.left - self.$el.width()/2 - $obstacle.width()/2;
                 if( distToObstacle < self.$el.width()*1.75 && distToObstacle > 0
@@ -227,7 +227,6 @@
       input.on('button_down', _.bind(function(button, padnum) {
         this.setAttractMode(false);
         switch(button) {
-          case 'button1':
           case 'action':
             var slug = $(this._gallery.getCurrentSlide()).parent().data('slug');
             if(this.games.hasOwnProperty(slug)) {

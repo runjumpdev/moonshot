@@ -15,20 +15,22 @@
         ROM CHECK
       </h1>
       <h2>
-      Press <img src="images/button1.png"> to connect each joystick.
+      Press <img src="images/button1.png"> to connect joysticks.
       <br>
-      Hold <img src="images/action.png" title="Action"> to shoot the moon.
+      Hold the <span style="color: #004400">LEX</span> button to continue.
       </h2>
       <div id="other-inputs" class="input-status">
         <span class="name">Main buttons</span>
         <ul>
-          <li class="action input">action</li>
-          <li class="start1 input">start1</li>
-          <li class="start2 input">start2</li>
-          <li class="start3 input">start3</li>
-          <li class="start4 input">start4</li>
-          <li class="coin1 input">coin1</li>
-          <li class="coin2 input">coin2</li>
+          <li class="action input">LEX button</li>
+          <!--
+            <li class="start1 input">start1</li>
+            <li class="start2 input">start2</li>
+            <li class="start3 input">start3</li>
+            <li class="start4 input">start4</li>
+            <li class="coin1 input">coin1</li>
+            <li class="coin2 input">coin2</li>
+          -->
         </ul>
       </div>
       <div id="stick0" class="input-status">
@@ -179,12 +181,12 @@
                   <% if (game.images[1]) { %>
    				  <img src='games/<%- game.slug+"/"+game.images[1] %>' width="768" height="432" style="padding: 20px;" />
                   <% } else { %>
-   				  <img src='games/<%- game.slug+"/"+game.images[0] %>' width="768" height="432" style="padding: 20px;" />				  
+   				  <img src='games/<%- game.slug+"/"+game.images[0] %>' width="768" height="432" style="padding: 20px;" />
                   <% } %>
                   <% if (game.images[2]) { %>
    				  <img src='games/<%- game.slug+"/"+game.images[2] %>' width="768" height="432" style="padding: 20px;" />
                   <% } else { %>
-   				  <img src='images/blank.png' width="768" height="432" style="padding: 20px;" />				  
+   				  <img src='images/blank.png' width="768" height="432" style="padding: 20px;" />
                   <% } %>
 				 </div>
                   <h1>
