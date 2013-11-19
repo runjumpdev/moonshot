@@ -53,21 +53,22 @@
   var Moonshot = function Moonshot(){
     _.templateSettings.variable = 'rc';
     var games = {};
-
+	
     var template = _.template($( 'script.template' ).html());
-    fs.readdirSync('./games/')
-      .filter(function(file) { return fs.statSync('./games/'+file).isDirectory() === true })
+
+    fs.readdirSync('../games/')
+      .filter(function(file) { return fs.statSync('../games/'+file).isDirectory() === true })
       .forEach(function(gameSlug) {
-    if (fs.existsSync('./games/'+gameSlug+'/lexitron.json')) {
+    if (fs.existsSync('../games/'+gameSlug+'/lexitron.json')) {
      var game = JSON.parse(
-       fs.readFileSync('./games/'+gameSlug+'/lexitron.json', 'utf8')
+       fs.readFileSync('../games/'+gameSlug+'/lexitron.json', 'utf8')
      );
      game.slug = gameSlug;
      if(game.exec[0] !== '/') {
-      game.exec = process.cwd().replace('\\source', '\\bin') + '/' + game.exec;
+      game.exec = process.cwd().replace('\\source', '\\games') + '/' + game.exec;
      }
      if(game.cwd[0] !== '/') {
-      game.cwd = process.cwd().replace('\\source', '\\bin') + '/' + game.cwd;
+      game.cwd = process.cwd().replace('\\source', '\\games') + '/' + game.cwd;
      }
      games[game.slug] = game;
     }
@@ -271,6 +272,7 @@
 
       this._input.teardown();
       this.setAttractMode(false, true);
+	  console.log(exec+" "+args);
       this._cp.exec(exec+" "+args, options, _.bind(function(error, stdout, stderr) {
         if (error) {
           console.log(error.stack);

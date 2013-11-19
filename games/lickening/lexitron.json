@@ -28,8 +28,8 @@
 		}
 	],
 
-	"exec": "games/lickening/lickening.exe",
+	"exec": "lickening/bin/lickening.exe",
 	"args": "",
-	"cwd": "games/lickening/"
+	"cwd": "lickening/bin/"
 
 }

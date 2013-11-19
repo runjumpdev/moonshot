@@ -32,8 +32,8 @@
 		}
 	],
 
-	"exec": "games/compromised/bin/compromised.exe",
+	"exec": "akbb/bin/ASBB_13_11_18.exe",
 	"args": "",
-	"cwd": "games/compromised/bin/"
+	"cwd": "akbb/bin/"
 
 }

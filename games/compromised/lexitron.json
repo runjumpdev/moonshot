@@ -34,8 +34,8 @@
 		}
 	],
 
-	"exec": "games/compromised/bin/compromised.exe",
+	"exec": "compromised/bin/compromised.exe",
 	"args": "",
-	"cwd": "games/compromised/bin/"
+	"cwd": "compromised/bin/"
 
 }

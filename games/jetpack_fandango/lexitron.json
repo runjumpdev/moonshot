@@ -28,8 +28,8 @@
 		}
 	],
 
-	"exec": "games/jetpack_fandango/jetpackfandangolexitron.exe",
+	"exec": "jetpack_fandango/bin/jetpackfandangolexitron.exe",
 	"args": "",
-	"cwd": "games/jetpack_fandango/"
+	"cwd": "jetpack_fandango/bin/"
 
 }

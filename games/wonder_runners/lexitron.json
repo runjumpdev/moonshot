@@ -28,8 +28,8 @@
 		}
 	],
 
-	"exec": "games/wonder_runners/wonderrunners.exe",
+	"exec": "wonder_runners/bin/wonderrunners.exe",
 	"args": "",
-	"cwd": "games/wonder_runners/"
+	"cwd": "wonder_runners/bin/"
 
 }

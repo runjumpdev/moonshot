@@ -30,7 +30,7 @@
 		}
 	],
 
-	"exec": "games/fearless_night/bin/fnalpha.exe",
+	"exec": "fearless_night/bin/fnalpha.exe",
 	"args": "",
-	"cwd": "games/fearless_night/bin/"
+	"cwd": "fearless_night/bin/"
 }
