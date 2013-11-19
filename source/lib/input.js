@@ -32,8 +32,8 @@
 
       // Start, coin, action keys
       var mapping = {};
-      mapping[Input.keys['SPACE']]  = 'action';	  
-      mapping[Input.keys['RIGHT_BRACKET']]  = 'action';
+      mapping[Input.keys['SPACE']]  = 'action';
+      mapping[Input.keys['LEFT_BRACKET']]  = 'action';
       mapping[Input.keys['1']]    = 'start1';
       mapping[Input.keys['2']]    = 'start2';
       mapping[Input.keys['3']]    = 'start3';
@@ -274,8 +274,8 @@
       'PULT_DOWN': 29461,
       'PULT_LEFT': 4,
       'PULT_RIGHT': 5,
-	  'LEFT_BRACKET': 91,	  
-	  'RIGHT_BRACKET': 93
+      'LEFT_BRACKET': 91,
+      'RIGHT_BRACKET': 93
     }
   });
 
