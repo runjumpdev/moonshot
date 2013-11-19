@@ -211,7 +211,11 @@
         }
       }, this));
     }
-
+    ,endGame: function() {
+        this.setupInputs();
+        this.setAttractMode(false);
+        this._gallery.togglePause();
+      }
     ,startGame: _.throttle(function(gameSlug) {
       var exec = this.games[gameSlug].exec || ""
         , args = this.games[gameSlug].args || ""
@@ -220,7 +224,8 @@
       this._input.teardown();
       this.setAttractMode(false, true);
       this._gallery.togglePause();
-      this._cp.exec(exec+" "+args, options, _.bind(function(error, stdout, stderr) {
+
+      var gameProc = this._cp.exec(exec+" "+args, options, _.bind(function(error, stdout, stderr){
         if (error) {
           console.log(error.stack);
           console.log('Error code: '+error.code);
@@ -228,10 +233,11 @@
         }
         console.log('Child Process STDOUT: '+stdout);
         console.log('Child Process STDERR: '+stderr);
-        this.setupInputs();
-        this.setAttractMode(false);
-        this._gallery.togglePause();
       }, this));
+      var self = this;
+      gameProc.on('exit', function(){
+        self.endGame();
+      });
     }, 5000, {trailing: false})
 
     ,_nextFont: function() {
