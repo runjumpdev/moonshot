@@ -272,7 +272,7 @@
 
       this._input.teardown();
       this.setAttractMode(false, true);
-	  console.log(exec+" "+args);
+      this._gallery.togglePause();
       this._cp.exec(exec+" "+args, options, _.bind(function(error, stdout, stderr) {
         if (error) {
           console.log(error.stack);
@@ -283,6 +283,7 @@
         console.log('Child Process STDERR: '+stderr);
         this.setupInputs();
         this.setAttractMode(false);
+        this._gallery.togglePause();
       }, this));
     }, 5000, {trailing: false})
 

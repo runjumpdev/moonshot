@@ -73,9 +73,14 @@ html, body, div {
 #scene li div {
   position: relative;
 }
+
 .slides section > section > img {
   width: 100%;
   height: 100%;
+}
+
+.reveal .controls {
+  right: 905px;
 }
 
 .horsie {
@@ -225,4 +230,16 @@ html, body, div {
 @-webkit-keyframes floorPan {
   from { background-position: 0px; }
   to { background-position: -120px; }
+}
+
+.reveal .pause-overlay {
+  background-image: url(../images/loading.png);
+  background-color: #FFF;
+  background-repeat: no-repeat;
+  -webkit-animation: pauseFloat 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes pauseFloat {
+  from {background-position: 0;}
+  to{background-position: 50 -50px;}
 }
