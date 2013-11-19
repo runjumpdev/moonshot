@@ -115,32 +115,30 @@ html, body, div {
   background-repeat: repeat-x;
 }
 
-.bourbonAnim1 {
-  -webkit-animation: bourbonAnim1 0.7s steps(7) infinite;
+.bourbonAnim {
+  -webkit-animation: bourbonAnim  0.7s steps(5) infinite;
 }
 
-.bourbonAnim2 {
-  -webkit-animation: bourbonAnim2 0.7s steps(7) infinite;
-}
-.bourbonAnim3 {
-  -webkit-animation: bourbonAnim3 0.7s steps(7) infinite;
-}
-
-@-webkit-keyframes bourbonAnim1 {
+@-webkit-keyframes bourbonAnim {
   from { background-position: 0px; }
   to { background-position: -350px; }
 }
 
-@-webkit-keyframes bourbonAnim2 {
-  from { background-position: 200px; }
-  to { background-position: -150px; }
+.pc1 {
+  height: 120px;
+  width: 160px;
+  top: 720px;
+  background: url(../images/pc.svg);
+  background-size: cover;
+  -webkit-animation: pc1Move 15.1s linear infinite;
 }
 
-@-webkit-keyframes bourbonAnim3 {
-  from { background-position: 100px; }
-  to { background-position: -250px; }
+@-webkit-keyframes pc1Move {
+  from { margin-left: 1510px; }
+  66% { margin-left: -500px; }
+  66.0001% { margin-left: 2520px; }
+  to { margin-left: 1510px; }
 }
-
 
 .barrel1 {
   height: 120px;
@@ -148,12 +146,12 @@ html, body, div {
   top: 720px;
   background: url(../images/barrel.svg);
   background-size: cover;
-  -webkit-animation: barrel1Move 9.45s linear infinite,
+  -webkit-animation: barrel1Move 15.1s linear infinite,
     barrelRoll 1.8s linear infinite;
 }
 
 @-webkit-keyframes barrel1Move {
-  from { margin-left: 2020px; }
+  from { margin-left: 2520px; }
   to { margin-left: -500px; }
 }
 

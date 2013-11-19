@@ -142,11 +142,11 @@
                 var $obstacle = $(this) 
                   ,obstacleOffset = $obstacle.offset()
                   ,distToObstacle = obstacleOffset.left - myOffset.left - self.$el.width()/2 - $obstacle.width()/2;
-                if( distToObstacle < self.$el.width()*2 && distToObstacle > 0
+                if( distToObstacle < self.$el.width()*1.75 && distToObstacle > 0
                   && self.state != 'jumping') {
                   self.state = 'jumping';
-                  var jumpHeight = $obstacle.height() + self.$el.height() * 0.75;
-                  var airTime = ($obstacle.width() + distToObstacle * 1.75)/.2;
+                  var jumpHeight = $obstacle.height() * 1.2  + self.$el.height() * 0.50;
+                  var airTime = ($obstacle.width() + distToObstacle * 1.80)/.17;
                   self.$el.css('background-size', '0px');
                   self.$el.children('#'+self.entity+'Jump').toggle();
                   self.$el.animate(
