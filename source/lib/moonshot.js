@@ -7,49 +7,7 @@
 
   var gui = window.require('nw.gui');
   var win = gui.Window.get();
-  var baseEasings = {};
-
-  $.each( [ "Quad", "Cubic", "Quart", "Quint", "Expo" ], function( i, name ) {
-    baseEasings[ name ] = function( p ) {
-      return Math.pow( p, i + 2 );
-    };
-  });
-
-  $.extend( baseEasings, {
-    Sine: function ( p ) {
-      return 1 - Math.cos( p * Math.PI / 2 );
-    },
-    Circ: function ( p ) {
-      return 1 - Math.sqrt( 1 - p * p );
-    },
-    Elastic: function( p ) {
-      return p === 0 || p === 1 ? p :
-        -Math.pow( 2, 8 * (p - 1) ) * Math.sin( ( (p - 1) * 80 - 7.5 ) * Math.PI / 15 );
-    },
-    Back: function( p ) {
-      return p * p * ( 3 * p - 2 );
-    },
-    Bounce: function ( p ) {
-      var pow2,
-        bounce = 4;
-
-      while ( p < ( ( pow2 = Math.pow( 2, --bounce ) ) - 1 ) / 11 ) {}
-      return 1 / Math.pow( 4, 3 - bounce ) - 7.5625 * Math.pow( ( pow2 * 3 - 2 ) / 22 - p, 2 );
-    }
-  });
-
-  $.each( baseEasings, function( name, easeIn ) {
-    $.easing[ "easeIn" + name ] = easeIn;
-    $.easing[ "easeOut" + name ] = function( p ) {
-      return 1 - easeIn( 1 - p );
-    };
-    $.easing[ "easeInOut" + name ] = function( p ) {
-      return p < 0.5 ?
-        easeIn( p * 2 ) / 2 :
-        1 - easeIn( p * -2 + 2 ) / 2;
-    };
-  });
-
+ 
   var Moonshot = function Moonshot(){
     _.templateSettings.variable = 'rc';
     var games = {};
@@ -143,37 +101,26 @@
                 var $obstacle = $(this)
                   ,obstacleOffset = $obstacle.offset()
                   ,distToObstacle = obstacleOffset.left - myOffset.left - self.$el.width()/2 - $obstacle.width()/2;
-                if( distToObstacle < self.$el.width()*1.75 && distToObstacle > 0
+                if( distToObstacle < self.$el.width() * 1.5 && distToObstacle > 0
                   && self.state != 'jumping') {
                   self.state = 'jumping';
-                  var jumpHeight = $obstacle.height() * 1.2  + self.$el.height() * 0.50;
-                  var airTime = ($obstacle.width() + distToObstacle * 1.80)/.17;
-                  self.$el.css('background-size', '0px');
+                  var jumpHeight = $obstacle.height() * 1.5  + self.$el.height() * 0.50;
+                  var airTime = ($obstacle.width() + distToObstacle * 1.80)/0.15;
                   self.$el.children('#'+self.entity+'Jump').toggle();
-                  self.$el.animate(
-                    { top: '-='+jumpHeight+'px' }
-                    ,{
-                      easing: 'easeOutCubic'
-                      ,duration: airTime/2
-                      ,complete: function() {
-                        self.$el.animate(
-                          { top: '+='+jumpHeight+'px'  }
-                          ,{
-                            easing: 'easeInCubic'
-                            ,duration: airTime/2
-                            ,progress: function(animation, progress, remainingMs) {
-                              if(remainingMs < 450 && self.$el.css('background-size') == '0px') {
-                                self.$el.css('background-size', 'cover');
-                                self.$el.children('#'+self.entity+'Jump').toggle();
-                              }
-                            }
-                            , complete: function() {
-                              self.state = 'running';
-                            }
-                          }
-                        );
-                      }
-                    });
+                  self.$el.css('background-size', '0px');
+                  self.$el.css('-webkit-transition', 'all '+(airTime/2000)+'s ease-out');
+                  self.$el.css('-webkit-transform', 'translate(0, -'+jumpHeight+'px)');
+                  setTimeout(function() {
+                    self.$el.css('-webkit-transition', 'all '+(airTime/2000)+'s ease-in');
+                    self.$el.css('-webkit-transform', 'translate(0, 0)');
+                  }, airTime*0.5);
+                  setTimeout(function() {
+                    self.$el.css('background-size', 'cover');
+                    self.$el.children('#'+self.entity+'Jump').toggle();
+                  }, airTime*0.75);
+                  setTimeout(function() {
+                    self.state = 'running';
+                  }, airTime)
                 }
               });
               break;

@@ -74,6 +74,10 @@ html, body, div {
   position: relative;
 }
 
+.entity {
+  transform: translate(0,0);
+}
+
 .slides section > section > img {
   width: 100%;
   height: 100%;
