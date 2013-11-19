@@ -247,3 +247,24 @@ html, body, div {
   from {background-position: 0;}
   to{background-position: 50 -50px;}
 }
+
+.reveal .controls div {
+  border: 36px solid transparent;
+  bottom: 60px;
+}
+
+.reveal .controls div.navigate-left {
+  border-right-width: 66px;
+  left:-70px;
+}
+.reveal .controls div.navigate-right {
+  border-left-width: 66px;
+  left:124px;
+}
+.reveal .controls div.navigate-up {
+  border-bottom-width: 66px;
+}
+.reveal .controls div.navigate-down {
+  border-top-width: 66px;
+  top: 56px;
+}
