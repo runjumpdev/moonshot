@@ -234,22 +234,9 @@
         }
         console.log('Child Process STDOUT: '+stdout);
         console.log('Child Process STDERR: '+stderr);
+        this.endGame();
       }, this)).pid;
-      this.checkForGameEnd();
     }, 5000, {trailing: false})
-    ,checkForGameEnd: function() {
-      var self = this
-      ,game = self._cp.spawn('wmic', ['process', self._gamePid]);
-
-      game.stderr.on('data', function (data) {
-        if(data.toString().indexOf('No Instance(s) Available.') != -1) {
-          self.endGame();
-        }
-      });
-      if(this._gamePid !== undefined) {
-        setTimeout(function(){self.checkForGameEnd.call(self)}, 200);
-      }
-    }
     ,_nextFont: function() {
       // TODO: not working.
       this._fontIndex--;
