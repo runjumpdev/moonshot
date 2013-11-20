@@ -32,7 +32,7 @@
 		}
 	],
 
-	"exec": "akbb/bin/ASBB_13_11_18.exe",
+	"exec": "akbb/bin/AKBB_13_11_18.exe",
 	"args": "",
 	"cwd": "akbb/bin/"
 
