@@ -1,9 +1,11 @@
 {
 	"name" : "Jetpack Fandango",
-	"description": "",
+	"platforms": "Ouya coming soon",
+    "players": "2 to 4 players",
+	"description": "Jetpack Fandango is an arena fighter with jetpacks, chainsaws, and cake.",
 
 	"byline": "OnlySlightly",
-	"website": "",
+	"devwebsite": "OnlySlightly.com",
 	"twitter": "",
 	"facebook": "",
 

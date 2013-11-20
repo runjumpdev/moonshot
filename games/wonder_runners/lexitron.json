@@ -1,9 +1,11 @@
 {
 	"name" : "Wonder Runners",
+    "platforms": "Lexitron Exclusive",
+    "players": "1 to 2 players",
 	"description": "",
 
 	"byline": "OnlySlightly",
-	"website": "",
+	"devwebsite": "OnlySlightly.com",
 	"twitter": "",
 	"facebook": "",
 

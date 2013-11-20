@@ -1,9 +1,11 @@
 {
 	"name" : "The Lickening",
+	"platforms": "Ouya coming soon",
+    "players": "2 players",
 	"description": "",
 
 	"byline": "OnlySlightly",
-	"website": "",
+	"devwebsite": "OnlySlightly.com",
 	"twitter": "",
 	"facebook": "",
 
