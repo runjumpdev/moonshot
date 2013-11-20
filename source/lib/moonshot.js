@@ -215,6 +215,7 @@
         this.setupInputs();
         this.setAttractMode(false);
         this._gallery.togglePause();
+        this._gamePid = undefined;
       }
     ,startGame: _.throttle(function(gameSlug) {
       var exec = this.games[gameSlug].exec || ""
@@ -225,7 +226,7 @@
       this.setAttractMode(false, true);
       this._gallery.togglePause();
 
-      var gameProc = this._cp.exec(exec+" "+args, options, _.bind(function(error, stdout, stderr){
+      this._gamePid = this._cp.exec(exec+" "+args, options, _.bind(function(error, stdout, stderr){
         if (error) {
           console.log(error.stack);
           console.log('Error code: '+error.code);
@@ -233,13 +234,22 @@
         }
         console.log('Child Process STDOUT: '+stdout);
         console.log('Child Process STDERR: '+stderr);
-      }, this));
-      var self = this;
-      gameProc.on('exit', function(){
-        self.endGame();
-      });
+      }, this)).pid;
+      this.checkForGameEnd();
     }, 5000, {trailing: false})
+    ,checkForGameEnd: function() {
+      var self = this
+      ,game = self._cp.spawn('wmic', ['process', self._gamePid]);
 
+      game.stderr.on('data', function (data) {
+        if(data.toString().indexOf('No Instance(s) Available.') != -1) {
+          self.endGame();
+        }
+      });
+      if(this._gamePid !== undefined) {
+        setTimeout(function(){self.checkForGameEnd.call(self)}, 200);
+      }
+    }
     ,_nextFont: function() {
       // TODO: not working.
       this._fontIndex--;
