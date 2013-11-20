@@ -274,8 +274,8 @@
       'PULT_DOWN': 29461,
       'PULT_LEFT': 4,
       'PULT_RIGHT': 5,
-      'LEFT_BRACKET': 91,
-      'RIGHT_BRACKET': 93
+      'LEFT_BRACKET': 219,
+      'RIGHT_BRACKET': 221
     }
   });
 
