@@ -3,7 +3,8 @@
 
   var _ = require('./vendor/underscore-min.js'),
       $ = require('./vendor/jquery-2.0.3.min.js'),
-      fs = require('fs');
+      fs = require('fs'),
+      path = require('path');
 
   var gui = window.require('nw.gui');
   var win = gui.Window.get();
@@ -14,23 +15,32 @@
 
     var template = _.template($( 'script.template' ).html());
 
-    fs.readdirSync('../games/')
-      .filter(function(file) { return fs.statSync('../games/'+file).isDirectory() === true })
-      .forEach(function(gameSlug) {
-    if (fs.existsSync('../games/'+gameSlug+'/lexitron.json')) {
-     var game = JSON.parse(
-       fs.readFileSync('../games/'+gameSlug+'/lexitron.json', 'utf8')
-     );
-     game.slug = gameSlug;
-     if(game.exec[0] !== '/') {
-      game.exec = process.cwd().replace('\\source', '\\games') + '/' + game.exec;
-     }
-     if(game.cwd[0] !== '/') {
-      game.cwd = process.cwd().replace('\\source', '\\games') + '/' + game.cwd;
-     }
-     games[game.slug] = game;
+    // Normalize CWD when app is bundled and extracts/runs in a temp dir.
+    var games_path = path.join(path.dirname(process.execPath), 'games');
+
+    var isDirectory = function(file) {
+      return fs.statSync(path.join(games_path, file)).isDirectory();
     }
-    });
+
+    fs.readdirSync(games_path)
+      .filter(isDirectory)
+      .forEach(function(gameSlug) {
+        var jsonFile = path.join(games_path, gameSlug, 'lexitron.json');
+        if (fs.existsSync(jsonFile)) {
+         var game = JSON.parse(fs.readFileSync(jsonFile, 'utf8'));
+         game.slug = gameSlug;
+         // TODO(mildmojo): Add gameSlug to these paths so they don't have to be
+         //   hardcoded in each lexitron.json.
+         if(game.exec[0] !== '/') {
+           game.exec = path.join(games_path, game.exec);
+         }
+         if(game.cwd[0] !== '/') {
+           game.cwd = path.join(games_path, game.cwd);
+         }
+         games[game.slug] = game;
+        }
+      });
+
     var templateData = {
       games: games
     };

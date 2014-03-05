@@ -127,24 +127,22 @@
             </section>
           </section>
           <script type="text/template" class="template">
-            <% for ( var idx in rc.games) { var game = rc.games[idx]; %>
+            <% var path = require('path'); %>
+            <% var execPath = path.dirname(process.execPath); %>
+            <% for ( var idx in rc.games) { %>
+              <% var game = rc.games[idx]; %>
+              <% var gamePath = path.join(execPath, 'games', game.slug); %>
               <section class='game' data-slug='<%= game.slug %>'>
                 <section class='autoslide-5000'>
-                  <img src='../games/<%- game.slug+"/"+game.images[0] %>' />
+                  <img src='<%- path.join(gamePath, game.images[0]) %>' />
                 </section>
                 <section class='autoslide-5000'>
-				<div style="padding: 20x; float: left; width: 850px;">
-                  <% if (game.images[1]) { %>
-   				  <img src='../games/<%- game.slug+"/"+game.images[1] %>' width="768" height="432" style="padding: 20px;" />
-                  <% } else { %>
-   				  <img src='../games/<%- game.slug+"/"+game.images[0] %>' width="768" height="432" style="padding: 20px;" />
-                  <% } %>
-                  <% if (game.images[2]) { %>
-   				  <img src='../games/<%- game.slug+"/"+game.images[2] %>' width="768" height="432" style="padding: 20px;" />
-                  <% } else { %>
-   				  <img src='images/blank.png' width="768" height="432" style="padding: 20px;" />
-                  <% } %>
-				 </div>
+                  <div style="padding: 20x; float: left; width: 850px;">
+                    <% game.images[1] = path.join(gamePath, (game.images[1] || game.images[0])); %>
+                    <% game.images[2] = game.images[2] ? path.join(gamePath, game.images[2]) : 'images/blank.png'; %>
+                    <img src='<%- game.images[1] %>' width="768" height="432" style="padding: 20px;" />
+                    <img src='<%- game.images[2] %>' width="768" height="432" style="padding: 20px;" />
+                  </div>
                   <h1>
                     <%= game.name %>
                   </h1>
