@@ -7,11 +7,11 @@
 
   var gui = window.require('nw.gui');
   var win = gui.Window.get();
- 
+
   var Moonshot = function Moonshot(){
     _.templateSettings.variable = 'rc';
     var games = {};
-	
+
     var template = _.template($( 'script.template' ).html());
 
     fs.readdirSync('../games/')
@@ -60,6 +60,8 @@
       this._finish = callback;
       this._input = input;
       this._gallery = Reveal;
+      this._cashSound = window.document.createElement('audio');
+      this._cashSound.setAttribute('src', 'audio/coin2.ogg');
       Reveal.initialize({
         width: window.innerWidth
         ,height: window.innerHeight
@@ -180,6 +182,10 @@
             if(this.games.hasOwnProperty(slug)) {
               this.startGame(slug);
             }
+            break;
+          case 'coin':
+            this._cashSound.currentTime = 0;
+            this._cashSound.play();
             break;
           case 'left':
             this._gallery.left();
